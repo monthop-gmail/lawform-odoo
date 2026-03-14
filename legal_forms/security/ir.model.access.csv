@@ -13,3 +13,5 @@ access_legal_printer_config_user,legal.printer.config.user,model_legal_printer_c
 access_legal_printer_config_manager,legal.printer.config.manager,model_legal_printer_config,base.group_system,1,1,1,1
 access_legal_text_annotation_user,legal.text.annotation.user,model_legal_text_annotation,base.group_user,1,1,1,0
 access_legal_text_annotation_manager,legal.text.annotation.manager,model_legal_text_annotation,base.group_system,1,1,1,1
+access_legal_witness_item_user,legal.witness.item.user,model_legal_witness_item,base.group_user,1,1,1,0
+access_legal_witness_item_manager,legal.witness.item.manager,model_legal_witness_item,base.group_system,1,1,1,1

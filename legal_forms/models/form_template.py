@@ -50,6 +50,9 @@ class FormTemplate(models.Model):
         string='มีข้อความต่อเนื่อง (40 ก.)', default=False,
         help='ฟอร์มที่ต้องพิมพ์เนื้อความต่อเนื่องหลายหน้า '
              'เช่น คำฟ้อง, อุทธรณ์, ฎีกา')
+    has_witness_list = fields.Boolean(
+        string='มีบัญชีพยาน', default=False,
+        help='ฟอร์มที่มีตารางบัญชีพยาน ขยายได้หลายหน้า')
     report_template_id = fields.Many2one(
         'ir.actions.report', string='Report Template',
         help='เชื่อมกับ QWeb Report สำหรับพิมพ์ PDF')

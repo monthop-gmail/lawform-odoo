@@ -37,6 +37,7 @@
                             <field name="sequence"/>
                             <field name="active"/>
                             <field name="has_continuous_text"/>
+                            <field name="has_witness_list"/>
                         </group>
                     </group>
                     <field name="description" placeholder="คำอธิบายแบบฟอร์ม..."/>

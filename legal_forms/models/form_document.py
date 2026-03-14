@@ -56,6 +56,15 @@ class FormDocument(models.Model):
         string='ดูตัวอย่างข้อความต่อเนื่อง',
         compute='_compute_continuous_text_preview')
 
+    # บัญชีพยาน
+    has_witness_list = fields.Boolean(
+        related='template_id.has_witness_list')
+    witness_item_ids = fields.One2many(
+        'legal.witness.item', 'document_id',
+        string='บัญชีพยาน')
+    witness_count = fields.Integer(
+        string='จำนวนพยาน', compute='_compute_witness_count')
+
     # ข้อความแทรกอิสระ
     annotation_ids = fields.One2many(
         'legal.text.annotation', 'document_id',
@@ -74,6 +83,11 @@ class FormDocument(models.Model):
             self.court_name = self.case_id.court_name
             self.black_case_no = self.case_id.black_case_no
             self.red_case_no = self.case_id.red_case_no
+
+    @api.depends('witness_item_ids')
+    def _compute_witness_count(self):
+        for rec in self:
+            rec.witness_count = len(rec.witness_item_ids)
 
     @api.depends('annotation_ids')
     def _compute_annotation_count(self):

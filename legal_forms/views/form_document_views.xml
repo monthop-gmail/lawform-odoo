@@ -65,6 +65,24 @@
                             <field name="continuous_text_preview"
                                    readonly="1" class="o_field_html"/>
                         </page>
+                        <page string="บัญชีพยาน"
+                              invisible="not has_witness_list">
+                            <field name="has_witness_list" invisible="1"/>
+                            <div class="alert alert-info" role="alert">
+                                เพิ่ม/ลบ/ลากเรียงลำดับพยาน ระบบจะจัดหน้าให้อัตโนมัติ
+                            </div>
+                            <field name="witness_item_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="witness_number" readonly="1"/>
+                                    <field name="name"/>
+                                    <field name="address"/>
+                                    <field name="witness_type"/>
+                                    <field name="facts_to_prove"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="ข้อความแทรก">
                             <div class="alert alert-info" role="alert">
                                 เพิ่มข้อความลงตำแหน่งใดก็ได้บนฟอร์ม เช่น ขีดฆ่าแก้ไข หรือเซ็นชื่อรับรอง
