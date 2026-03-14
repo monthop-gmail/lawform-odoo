@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Paper Format: A4 ศาล -->
+    <record id="paperformat_legal_a4" model="report.paperformat">
+        <field name="name">Legal Form A4</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <!-- Report Action: พิมพ์แบบฟอร์มเต็ม -->
+    <record id="action_report_form_document" model="ir.actions.report">
+        <field name="name">พิมพ์แบบฟอร์ม</field>
+        <field name="model">legal.form.document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">legal_forms.report_form_document</field>
+        <field name="report_file">legal_forms.report_form_document</field>
+        <field name="paperformat_id" ref="paperformat_legal_a4"/>
+        <field name="binding_model_id" ref="model_legal_form_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Action: พิมพ์เฉพาะข้อมูล -->
+    <record id="action_report_form_data_only" model="ir.actions.report">
+        <field name="name">พิมพ์เฉพาะข้อมูล</field>
+        <field name="model">legal.form.document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">legal_forms.report_form_data_only</field>
+        <field name="report_file">legal_forms.report_form_data_only</field>
+        <field name="paperformat_id" ref="paperformat_legal_a4"/>
+        <field name="binding_model_id" ref="model_legal_form_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Template: พิมพ์แบบฟอร์มเต็ม -->
+    <template id="report_form_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page"
+                         style="font-family: 'TH SarabunPSK', 'TH Sarabun New', 'Angsana New', sans-serif; font-size: 16pt;">
+
+                        <!-- เนื้อหาฟอร์มหลัก -->
+                        <div t-field="doc.body_html"/>
+
+                        <!-- ข้อความต่อเนื่อง (40 ก.) -->
+                        <t t-if="doc.has_continuous_text and doc.continuous_text_ids">
+                            <div style="page-break-before: always;"/>
+                            <div style="text-align: center; font-size: 14pt; margin-bottom: 10mm;">
+                                <strong>แบบ ๔๐ ก.</strong>
+                            </div>
+                            <t t-foreach="doc.continuous_text_ids" t-as="ct">
+                                <div style="text-indent: 2.5cm; margin-bottom: 3mm;">
+                                    <strong>
+                                        <t t-esc="ct.section_label or 'ข้อ'"/>
+                                        <t t-esc="ct.section_number or ''"/>
+                                    </strong>
+                                    <t t-raw="ct.content"/>
+                                </div>
+                            </t>
+                        </t>
+
+                        <!-- บัญชีพยาน -->
+                        <t t-if="doc.has_witness_list and doc.witness_item_ids">
+                            <div style="page-break-before: always;"/>
+                            <div style="text-align: center; font-size: 18pt; font-weight: bold; margin-bottom: 5mm;">
+                                บัญชีพยาน
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; font-size: 14pt;"
+                                   cellpadding="5">
+                                <thead>
+                                    <tr style="border: 1px solid #000;">
+                                        <th style="border: 1px solid #000; width: 8%; text-align: center;">ลำดับที่</th>
+                                        <th style="border: 1px solid #000; width: 35%;">ชื่อและที่อยู่</th>
+                                        <th style="border: 1px solid #000; width: 40%;">ข้อเท็จจริงที่ต้องการสืบ</th>
+                                        <th style="border: 1px solid #000; width: 17%;">หมายเหตุ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.witness_item_ids" t-as="w">
+                                        <tr style="border: 1px solid #000;">
+                                            <td style="border: 1px solid #000; text-align: center;">
+                                                <t t-esc="w.witness_number"/>
+                                            </td>
+                                            <td style="border: 1px solid #000;">
+                                                <t t-esc="w.name"/><br/>
+                                                <span style="font-size: 12pt;">
+                                                    <t t-esc="w.address or ''"/>
+                                                </span>
+                                            </td>
+                                            <td style="border: 1px solid #000;">
+                                                <t t-esc="w.facts_to_prove or ''"/>
+                                            </td>
+                                            <td style="border: 1px solid #000;">
+                                                <t t-esc="w.notes or ''"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <!-- ข้อความแทรกอิสระ (overlay) -->
+                        <t t-if="doc.annotation_ids">
+                            <t t-foreach="doc.annotation_ids" t-as="ann">
+                                <div t-attf-style="position: absolute; left: #{ann.pos_x}mm; top: #{ann.pos_y}mm; font-size: #{ann.font_size}pt;"
+                                     t-att-class="'text-decoration-line-through' if ann.is_strikethrough else ''">
+                                    <t t-esc="ann.content"/>
+                                </div>
+                            </t>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- QWeb Template: พิมพ์เฉพาะข้อมูล -->
+    <template id="report_form_data_only">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page"
+                     style="font-family: 'TH SarabunPSK', 'TH Sarabun New', 'Angsana New', sans-serif; font-size: 16pt; position: relative;"
+                     t-attf-style="padding-top: #{doc.printer_config_id.offset_top if doc.printer_config_id else 0}mm; padding-left: #{doc.printer_config_id.offset_left if doc.printer_config_id else 0}mm;">
+
+                    <!-- ข้อมูลคดี -->
+                    <div style="margin-top: 30mm;">
+                        <p t-if="doc.court_name">
+                            <t t-esc="doc.court_name"/>
+                        </p>
+                        <p t-if="doc.plaintiff_id">
+                            <t t-esc="doc.plaintiff_id.name"/>
+                        </p>
+                        <p t-if="doc.defendant_id">
+                            <t t-esc="doc.defendant_id.name"/>
+                        </p>
+                        <p t-if="doc.black_case_no">
+                            คดีหมายเลขดำที่ <t t-esc="doc.black_case_no"/>
+                        </p>
+                        <p t-if="doc.red_case_no">
+                            คดีหมายเลขแดงที่ <t t-esc="doc.red_case_no"/>
+                        </p>
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

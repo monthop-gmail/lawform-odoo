@@ -124,6 +124,13 @@ class FormDocument(models.Model):
         self.write({'state': 'printed'})
         if self.template_id.report_template_id:
             return self.template_id.report_template_id.report_action(self)
+        if self.print_mode == 'data_only':
+            return self.env.ref(
+                'legal_forms.action_report_form_data_only'
+            ).report_action(self)
+        return self.env.ref(
+            'legal_forms.action_report_form_document'
+        ).report_action(self)
 
     def action_draft(self):
         self.write({'state': 'draft'})

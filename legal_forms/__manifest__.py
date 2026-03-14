@@ -23,6 +23,7 @@
         'views/form_template_views.xml',
         'views/form_document_views.xml',
         'views/printer_config_views.xml',
+        'reports/report_form_document.xml',
     ],
     'installable': True,
     'application': True,
