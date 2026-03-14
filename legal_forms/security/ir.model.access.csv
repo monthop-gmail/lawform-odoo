@@ -9,3 +9,5 @@ access_legal_form_document_user,legal.form.document.user,model_legal_form_docume
 access_legal_form_document_manager,legal.form.document.manager,model_legal_form_document,base.group_system,1,1,1,1
 access_legal_continuous_text_user,legal.continuous.text.user,model_legal_continuous_text,base.group_user,1,1,1,0
 access_legal_continuous_text_manager,legal.continuous.text.manager,model_legal_continuous_text,base.group_system,1,1,1,1
+access_legal_printer_config_user,legal.printer.config.user,model_legal_printer_config,base.group_user,1,0,0,0
+access_legal_printer_config_manager,legal.printer.config.manager,model_legal_printer_config,base.group_system,1,1,1,1

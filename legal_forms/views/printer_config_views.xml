@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_printer_config_list" model="ir.ui.view">
+        <field name="name">legal.printer.config.list</field>
+        <field name="model">legal.printer.config</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+                <field name="offset_top"/>
+                <field name="offset_left"/>
+                <field name="notes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_printer_config" model="ir.actions.act_window">
+        <field name="name">ตั้งค่าเครื่องพิมพ์</field>
+        <field name="res_model">legal.printer.config</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

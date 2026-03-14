@@ -29,6 +29,9 @@
                             <field name="court_name"/>
                             <field name="black_case_no"/>
                             <field name="red_case_no"/>
+                            <field name="print_mode" widget="radio"/>
+                            <field name="printer_config_id"
+                                   invisible="print_mode != 'data_only'"/>
                         </group>
                     </group>
                     <group>

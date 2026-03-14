@@ -31,6 +31,17 @@ class FormDocument(models.Model):
     black_case_no = fields.Char(string='เลขคดีดำ')
     red_case_no = fields.Char(string='เลขคดีแดง')
 
+    # ตัวเลือกการพิมพ์
+    print_mode = fields.Selection([
+        ('full', 'พิมพ์ทั้งฟอร์ม'),
+        ('data_only', 'พิมพ์เฉพาะข้อมูล'),
+    ], string='โหมดพิมพ์', default='full',
+        help='พิมพ์เฉพาะข้อมูล: สำหรับพิมพ์ลงกระดาษฟอร์มสำเร็จรูป '
+             '(เช่น ลูกความเซ็นชื่อไว้แล้ว)')
+    printer_config_id = fields.Many2one(
+        'legal.printer.config', string='เครื่องพิมพ์',
+        help='เลือกเครื่องพิมพ์เพื่อปรับ offset ตำแหน่ง')
+
     # เนื้อหาที่กรอก
     body_html = fields.Html(string='เนื้อหาเอกสาร')
     notes = fields.Text(string='หมายเหตุ')

@@ -36,4 +36,10 @@
               parent="menu_legal_config"
               action="action_form_category"
               sequence="20"/>
+
+    <menuitem id="menu_printer_config"
+              name="ตั้งค่าเครื่องพิมพ์"
+              parent="menu_legal_config"
+              action="action_printer_config"
+              sequence="30"/>
 </odoo>

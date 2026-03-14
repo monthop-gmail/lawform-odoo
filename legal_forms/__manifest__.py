@@ -22,6 +22,7 @@
         'views/legal_case_views.xml',
         'views/form_template_views.xml',
         'views/form_document_views.xml',
+        'views/printer_config_views.xml',
     ],
     'installable': True,
     'application': True,
