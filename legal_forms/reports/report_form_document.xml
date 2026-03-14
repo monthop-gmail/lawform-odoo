@@ -27,6 +27,30 @@
         <field name="binding_type">report</field>
     </record>
 
+    <!-- Report Action: พิมพ์เฉพาะหน้าคี่ -->
+    <record id="action_report_form_odd_pages" model="ir.actions.report">
+        <field name="name">พิมพ์หน้าคี่ (ด้านหน้า)</field>
+        <field name="model">legal.form.document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">legal_forms.report_form_document</field>
+        <field name="report_file">legal_forms.report_form_document</field>
+        <field name="paperformat_id" ref="paperformat_legal_a4"/>
+        <field name="binding_model_id" ref="model_legal_form_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Action: พิมพ์เฉพาะหน้าคู่ -->
+    <record id="action_report_form_even_pages" model="ir.actions.report">
+        <field name="name">พิมพ์หน้าคู่ (ด้านหลัง)</field>
+        <field name="model">legal.form.document</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">legal_forms.report_form_document</field>
+        <field name="report_file">legal_forms.report_form_document</field>
+        <field name="paperformat_id" ref="paperformat_legal_a4"/>
+        <field name="binding_model_id" ref="model_legal_form_document"/>
+        <field name="binding_type">report</field>
+    </record>
+
     <!-- Report Action: พิมพ์เฉพาะข้อมูล -->
     <record id="action_report_form_data_only" model="ir.actions.report">
         <field name="name">พิมพ์เฉพาะข้อมูล</field>

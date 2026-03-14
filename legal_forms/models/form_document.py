@@ -38,6 +38,13 @@ class FormDocument(models.Model):
     ], string='โหมดพิมพ์', default='full',
         help='พิมพ์เฉพาะข้อมูล: สำหรับพิมพ์ลงกระดาษฟอร์มสำเร็จรูป '
              '(เช่น ลูกความเซ็นชื่อไว้แล้ว)')
+    duplex_mode = fields.Selection([
+        ('all', 'ทุกหน้า'),
+        ('odd', 'เฉพาะหน้าคี่ (ด้านหน้า)'),
+        ('even', 'เฉพาะหน้าคู่ (ด้านหลัง)'),
+    ], string='เลือกหน้าพิมพ์', default='all',
+        help='สำหรับฟอร์มที่พิมพ์หน้า-หลัง: '
+             'พิมพ์หน้าคี่ก่อน กลับกระดาษ แล้วพิมพ์หน้าคู่')
     printer_config_id = fields.Many2one(
         'legal.printer.config', string='เครื่องพิมพ์',
         help='เลือกเครื่องพิมพ์เพื่อปรับ offset ตำแหน่ง')
@@ -127,6 +134,14 @@ class FormDocument(models.Model):
         if self.print_mode == 'data_only':
             return self.env.ref(
                 'legal_forms.action_report_form_data_only'
+            ).report_action(self)
+        if self.duplex_mode == 'odd':
+            return self.env.ref(
+                'legal_forms.action_report_form_odd_pages'
+            ).report_action(self)
+        if self.duplex_mode == 'even':
+            return self.env.ref(
+                'legal_forms.action_report_form_even_pages'
             ).report_action(self)
         return self.env.ref(
             'legal_forms.action_report_form_document'
