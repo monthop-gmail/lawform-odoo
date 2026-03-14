@@ -46,6 +46,10 @@ class FormTemplate(models.Model):
         string='เนื้อหาแบบฟอร์ม',
         help='HTML template ของแบบฟอร์ม ใช้ placeholder เช่น '
              '%(plaintiff)s, %(defendant)s, %(court)s')
+    has_continuous_text = fields.Boolean(
+        string='มีข้อความต่อเนื่อง (40 ก.)', default=False,
+        help='ฟอร์มที่ต้องพิมพ์เนื้อความต่อเนื่องหลายหน้า '
+             'เช่น คำฟ้อง, อุทธรณ์, ฎีกา')
     report_template_id = fields.Many2one(
         'ir.actions.report', string='Report Template',
         help='เชื่อมกับ QWeb Report สำหรับพิมพ์ PDF')

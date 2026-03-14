@@ -42,6 +42,26 @@
                         <page string="เนื้อหา">
                             <field name="body_html"/>
                         </page>
+                        <page string="ข้อความต่อเนื่อง (40 ก.)"
+                              invisible="not has_continuous_text">
+                            <field name="has_continuous_text" invisible="1"/>
+                            <div class="alert alert-info" role="alert">
+                                พิมพ์เนื้อความแต่ละข้อ โปรแกรมจะตัดลงฟอร์ม 40 ก. ต่อท้ายให้อัตโนมัติ
+                            </div>
+                            <field name="continuous_text_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="section_label"/>
+                                    <field name="section_number"/>
+                                    <field name="content"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="ดูตัวอย่าง 40 ก."
+                              invisible="not has_continuous_text">
+                            <field name="continuous_text_preview"
+                                   readonly="1" class="o_field_html"/>
+                        </page>
                         <page string="หมายเหตุ">
                             <field name="notes"/>
                         </page>

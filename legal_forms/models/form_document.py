@@ -35,6 +35,16 @@ class FormDocument(models.Model):
     body_html = fields.Html(string='เนื้อหาเอกสาร')
     notes = fields.Text(string='หมายเหตุ')
 
+    # ข้อความต่อเนื่อง (40 ก.)
+    has_continuous_text = fields.Boolean(
+        related='template_id.has_continuous_text')
+    continuous_text_ids = fields.One2many(
+        'legal.continuous.text', 'document_id',
+        string='เนื้อความต่อเนื่อง (40 ก.)')
+    continuous_text_preview = fields.Html(
+        string='ดูตัวอย่างข้อความต่อเนื่อง',
+        compute='_compute_continuous_text_preview')
+
     @api.onchange('case_id')
     def _onchange_case_id(self):
         """ดึงข้อมูลจากคดีมาเติมอัตโนมัติ"""
@@ -45,6 +55,23 @@ class FormDocument(models.Model):
             self.court_name = self.case_id.court_name
             self.black_case_no = self.case_id.black_case_no
             self.red_case_no = self.case_id.red_case_no
+
+    @api.depends('continuous_text_ids', 'continuous_text_ids.content',
+                 'continuous_text_ids.section_label',
+                 'continuous_text_ids.section_number')
+    def _compute_continuous_text_preview(self):
+        for rec in self:
+            if not rec.continuous_text_ids:
+                rec.continuous_text_preview = False
+                continue
+            parts = []
+            for ct in rec.continuous_text_ids:
+                label = ct.section_label or 'ข้อ'
+                number = ct.section_number or ''
+                header = f"<strong>{label} {number}</strong>"
+                content = ct.content or ''
+                parts.append(f"<p>{header} {content}</p>")
+            rec.continuous_text_preview = ''.join(parts)
 
     @api.onchange('template_id')
     def _onchange_template_id(self):

@@ -36,6 +36,7 @@
                             <field name="case_type"/>
                             <field name="sequence"/>
                             <field name="active"/>
+                            <field name="has_continuous_text"/>
                         </group>
                     </group>
                     <field name="description" placeholder="คำอธิบายแบบฟอร์ม..."/>
