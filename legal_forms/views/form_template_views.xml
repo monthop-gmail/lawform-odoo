@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Category List -->
+    <record id="view_form_category_list" model="ir.ui.view">
+        <field name="name">legal.form.category.list</field>
+        <field name="model">legal.form.category</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="template_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_form_category" model="ir.actions.act_window">
+        <field name="name">หมวดแบบฟอร์ม</field>
+        <field name="res_model">legal.form.category</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Template Form View -->
+    <record id="view_form_template_form" model="ir.ui.view">
+        <field name="name">legal.form.template.form</field>
+        <field name="model">legal.form.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="case_type"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="คำอธิบายแบบฟอร์ม..."/>
+                    <separator string="เนื้อหาแบบฟอร์ม"/>
+                    <field name="body_html"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Template List View -->
+    <record id="view_form_template_list" model="ir.ui.view">
+        <field name="name">legal.form.template.list</field>
+        <field name="model">legal.form.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="case_type"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Template Search -->
+    <record id="view_form_template_search" model="ir.ui.view">
+        <field name="name">legal.form.template.search</field>
+        <field name="model">legal.form.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category_id"/>
+                <group expand="0" string="จัดกลุ่ม">
+                    <filter string="หมวด" name="group_category"
+                            context="{'group_by': 'category_id'}"/>
+                    <filter string="ประเภทคดี" name="group_type"
+                            context="{'group_by': 'case_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_form_template" model="ir.actions.act_window">
+        <field name="name">แบบฟอร์ม (Template)</field>
+        <field name="res_model">legal.form.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

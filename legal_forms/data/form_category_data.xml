@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="category_general" model="legal.form.category">
+            <field name="name">ทั่วไป</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="category_civil" model="legal.form.category">
+            <field name="name">คดีแพ่ง</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="category_criminal" model="legal.form.category">
+            <field name="name">คดีอาญา</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="category_appeal" model="legal.form.category">
+            <field name="name">อุทธรณ์/ฎีกา</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="category_bankruptcy" model="legal.form.category">
+            <field name="name">คดีล้มละลาย</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="category_labor" model="legal.form.category">
+            <field name="name">คดีแรงงาน</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="category_admin" model="legal.form.category">
+            <field name="name">คดีปกครอง</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="category_consumer" model="legal.form.category">
+            <field name="name">คดีผู้บริโภค</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="category_arbitration" model="legal.form.category">
+            <field name="name">อนุญาโตตุลาการ</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="category_land" model="legal.form.category">
+            <field name="name">กรมที่ดิน</field>
+            <field name="sequence">10</field>
+        </record>
+    </data>
+</odoo>

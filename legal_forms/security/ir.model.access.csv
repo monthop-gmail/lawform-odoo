@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_legal_case_user,legal.case.user,model_legal_case,base.group_user,1,1,1,0
+access_legal_case_manager,legal.case.manager,model_legal_case,base.group_system,1,1,1,1
+access_legal_form_category_user,legal.form.category.user,model_legal_form_category,base.group_user,1,0,0,0
+access_legal_form_category_manager,legal.form.category.manager,model_legal_form_category,base.group_system,1,1,1,1
+access_legal_form_template_user,legal.form.template.user,model_legal_form_template,base.group_user,1,0,0,0
+access_legal_form_template_manager,legal.form.template.manager,model_legal_form_template,base.group_system,1,1,1,1
+access_legal_form_document_user,legal.form.document.user,model_legal_form_document,base.group_user,1,1,1,0
+access_legal_form_document_manager,legal.form.document.manager,model_legal_form_document,base.group_system,1,1,1,1

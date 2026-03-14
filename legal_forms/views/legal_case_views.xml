@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_legal_case_form" model="ir.ui.view">
+        <field name="name">legal.case.form</field>
+        <field name="model">legal.case</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,filed,hearing,judged,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_documents"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o">
+                            <field name="document_count" widget="statinfo"
+                                   string="เอกสาร"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group string="ข้อมูลคดี">
+                            <field name="name"/>
+                            <field name="case_type"/>
+                            <field name="court_name"/>
+                            <field name="black_case_no"/>
+                            <field name="red_case_no"/>
+                        </group>
+                        <group string="คู่ความ">
+                            <field name="plaintiff_id"/>
+                            <field name="defendant_id"/>
+                            <field name="lawyer_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="วันที่สำคัญ">
+                            <field name="date_filed"/>
+                            <field name="date_hearing"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="รายละเอียด">
+                            <field name="description"/>
+                        </page>
+                        <page string="เอกสาร">
+                            <field name="document_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="template_id"/>
+                                    <field name="state"/>
+                                    <field name="create_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_legal_case_list" model="ir.ui.view">
+        <field name="name">legal.case.list</field>
+        <field name="model">legal.case</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="case_type"/>
+                <field name="court_name"/>
+                <field name="plaintiff_id"/>
+                <field name="defendant_id"/>
+                <field name="state"/>
+                <field name="date_hearing"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_legal_case_search" model="ir.ui.view">
+        <field name="name">legal.case.search</field>
+        <field name="model">legal.case</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="plaintiff_id"/>
+                <field name="defendant_id"/>
+                <field name="court_name"/>
+                <filter string="คดีแพ่ง" name="civil"
+                        domain="[('case_type', '=', 'civil')]"/>
+                <filter string="คดีอาญา" name="criminal"
+                        domain="[('case_type', '=', 'criminal')]"/>
+                <group expand="0" string="จัดกลุ่ม">
+                    <filter string="ประเภทคดี" name="group_type"
+                            context="{'group_by': 'case_type'}"/>
+                    <filter string="สถานะ" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="ศาล" name="group_court"
+                            context="{'group_by': 'court_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_legal_case" model="ir.actions.act_window">
+        <field name="name">คดีความ</field>
+        <field name="res_model">legal.case</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

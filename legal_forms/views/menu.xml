@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top Menu -->
+    <menuitem id="menu_legal_root"
+              name="แบบฟอร์มศาล"
+              web_icon="legal_forms,static/description/icon.png"
+              sequence="100"/>
+
+    <!-- Sub Menus -->
+    <menuitem id="menu_legal_case"
+              name="คดีความ"
+              parent="menu_legal_root"
+              action="action_legal_case"
+              sequence="10"/>
+
+    <menuitem id="menu_legal_document"
+              name="เอกสาร"
+              parent="menu_legal_root"
+              action="action_form_document"
+              sequence="20"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_legal_config"
+              name="ตั้งค่า"
+              parent="menu_legal_root"
+              sequence="90"/>
+
+    <menuitem id="menu_form_template"
+              name="แบบฟอร์ม (Template)"
+              parent="menu_legal_config"
+              action="action_form_template"
+              sequence="10"/>
+
+    <menuitem id="menu_form_category"
+              name="หมวดแบบฟอร์ม"
+              parent="menu_legal_config"
+              action="action_form_category"
+              sequence="20"/>
+</odoo>

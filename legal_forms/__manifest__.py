@@ -1,0 +1,29 @@
+{
+    'name': 'Legal Forms (แบบฟอร์มศาล)',
+    'version': '18.0.1.0.0',
+    'category': 'Services/Legal',
+    'summary': 'แบบฟอร์มศาลและเอกสารทางกฎหมาย',
+    'description': """
+        ระบบจัดการแบบฟอร์มศาลและเอกสารทางกฎหมาย
+        - จัดการคดีความ
+        - สร้างแบบฟอร์มศาลตามมาตรฐาน
+        - พิมพ์แบบฟอร์มเป็น PDF
+        - เก็บประวัติเอกสารทั้งหมด
+    """,
+    'author': 'Your Company',
+    'website': '',
+    'license': 'LGPL-3',
+    'depends': ['base', 'contacts', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/form_category_data.xml',
+        'data/form_template_data.xml',
+        'views/menu.xml',
+        'views/legal_case_views.xml',
+        'views/form_template_views.xml',
+        'views/form_document_views.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}
