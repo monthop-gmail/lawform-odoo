@@ -65,6 +65,21 @@
                             <field name="continuous_text_preview"
                                    readonly="1" class="o_field_html"/>
                         </page>
+                        <page string="ข้อความแทรก">
+                            <div class="alert alert-info" role="alert">
+                                เพิ่มข้อความลงตำแหน่งใดก็ได้บนฟอร์ม เช่น ขีดฆ่าแก้ไข หรือเซ็นชื่อรับรอง
+                            </div>
+                            <field name="annotation_ids">
+                                <list editable="bottom">
+                                    <field name="page_number"/>
+                                    <field name="annotation_type"/>
+                                    <field name="content"/>
+                                    <field name="pos_x"/>
+                                    <field name="pos_y"/>
+                                    <field name="font_size"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="หมายเหตุ">
                             <field name="notes"/>
                         </page>

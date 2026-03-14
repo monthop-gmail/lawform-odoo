@@ -56,6 +56,14 @@ class FormDocument(models.Model):
         string='ดูตัวอย่างข้อความต่อเนื่อง',
         compute='_compute_continuous_text_preview')
 
+    # ข้อความแทรกอิสระ
+    annotation_ids = fields.One2many(
+        'legal.text.annotation', 'document_id',
+        string='ข้อความแทรก')
+    annotation_count = fields.Integer(
+        string='จำนวนข้อความแทรก',
+        compute='_compute_annotation_count')
+
     @api.onchange('case_id')
     def _onchange_case_id(self):
         """ดึงข้อมูลจากคดีมาเติมอัตโนมัติ"""
@@ -66,6 +74,11 @@ class FormDocument(models.Model):
             self.court_name = self.case_id.court_name
             self.black_case_no = self.case_id.black_case_no
             self.red_case_no = self.case_id.red_case_no
+
+    @api.depends('annotation_ids')
+    def _compute_annotation_count(self):
+        for rec in self:
+            rec.annotation_count = len(rec.annotation_ids)
 
     @api.depends('continuous_text_ids', 'continuous_text_ids.content',
                  'continuous_text_ids.section_label',
