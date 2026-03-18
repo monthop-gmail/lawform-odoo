@@ -3,6 +3,8 @@ set -e
 
 echo "=== LawForm Dev Environment Setup (Odoo 19) ==="
 
+export PGPASSWORD=odoo
+
 # Wait for PostgreSQL
 echo "Waiting for PostgreSQL..."
 until pg_isready -h db -U odoo -q; do
