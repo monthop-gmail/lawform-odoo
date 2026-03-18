@@ -3837,5 +3837,288 @@
             ]]></field>
         </record>
 
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- Phase 16: ฟอร์มที่เหลือจนครบ (ชุดสุดท้ายจริงๆ)     -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <!-- แบบ ๒ หน้าสำนวน -->
+        <record id="template_case_face" model="legal.form.template">
+            <field name="name">หน้าสำนวน</field>
+            <field name="code">แบบ ๒</field>
+            <field name="category_id" ref="category_general"/>
+            <field name="case_type">all</field>
+            <field name="sequence">2</field>
+            <field name="description">หน้าสำนวน แผ่นแรกของสำนวนคดี ระบุเลขคดี ศาล คู่ความ</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๒)</p>
+    <p style="text-align: center; font-size: 22pt; font-weight: bold;">หน้าสำนวน</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p>ศาล ...........................................................................</p>
+    <p>ความ ........................................</p>
+    <table style="width: 100%; margin-bottom: 10px;">
+        <tr><td style="width: 15%;">ระหว่าง</td><td>.......................................................................</td><td style="text-align: right;">โจทก์</td></tr>
+        <tr><td></td><td>.......................................................................</td><td style="text-align: right;">จำเลย</td></tr>
+    </table>
+    <p><strong>ข้อหาหรือเรื่อง</strong> .......................................................................</p>
+    <p><strong>ทุนทรัพย์</strong> .......................... บาท</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๗๖ ปกหลังสำนวน -->
+        <record id="template_case_back" model="legal.form.template">
+            <field name="name">ปกหลังสำนวน</field>
+            <field name="code">แบบ ๗๖</field>
+            <field name="category_id" ref="category_general"/>
+            <field name="case_type">all</field>
+            <field name="sequence">76</field>
+            <field name="description">ปกหลังสำนวนคดี สำหรับศาลใช้</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๗๖)</p>
+    <p style="text-align: center; font-size: 22pt; font-weight: bold;">ปกหลังสำนวน</p>
+    <p style="text-align: center; color: #888;">สำหรับศาลใช้</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๒๐ บันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด -->
+        <record id="template_witness_notice" model="legal.form.template">
+            <field name="name">บันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด</field>
+            <field name="code">แบบ ๒๐</field>
+            <field name="category_id" ref="category_general"/>
+            <field name="case_type">all</field>
+            <field name="sequence">20</field>
+            <field name="description">บันทึกเจ้าหน้าที่เรื่องแจ้งให้พยานทราบกำหนดนัดพิจารณา</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๒๐)</p>
+    <p style="text-align: center; font-size: 18pt; font-weight: bold;">บันทึกเจ้าหน้าที่<br/>เรื่องให้พยานทราบกำหนดนัด</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p>ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <table style="width: 100%; margin-bottom: 10px;">
+        <tr><td style="width: 15%;">ระหว่าง</td><td>.......................................................................</td><td style="text-align: right;">โจทก์</td></tr>
+        <tr><td></td><td>.......................................................................</td><td style="text-align: right;">จำเลย</td></tr>
+    </table>
+    <p style="text-indent: 2.5cm;">ข้าพเจ้าได้แจ้งให้พยาน .......................... ทราบกำหนดนัด .......................... ในวันที่ .............. เดือน .......................... พ.ศ. ๒๕.............. เวลา .............. น. แล้ว</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ เจ้าหน้าที่</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๕๔ หมายเรียกผู้คุมขัง (ตาม ม.90 ป.วิ.อ.) -->
+        <record id="template_custodian_summons" model="legal.form.template">
+            <field name="name">หมายเรียกผู้คุมขัง (ตามมาตรา ๙๐ ป.วิ.อ.)</field>
+            <field name="code">แบบ ๕๔</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">54</field>
+            <field name="description">หมายเรียกเจ้าพนักงานผู้คุมขังหรือบุคคลผู้คุมขัง ตาม ป.วิ.อ. มาตรา 90</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๕๔)</p>
+    <p style="text-align: center; font-size: 16pt; font-weight: bold;">หมายเรียกผู้คุมขัง<br/>(ตามมาตรา ๙๐ แห่ง ป.วิ.อ.)</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p style="text-align: center; font-weight: bold;">ในพระปรมาภิไธยพระมหากษัตริย์</p>
+    <p>ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <p><strong>หมายถึง</strong> ...........................................................................................................................</p>
+    <p style="text-indent: 2.5cm;">ด้วยมีผู้ร้องต่อศาลว่า .......................... ถูกคุมขังโดยมิชอบด้วยกฎหมาย จึงให้ท่านนำตัวผู้ถูกคุมขังมาศาลในวันที่ .............. เดือน .......................... พ.ศ. ๒๕.............. เวลา .............. น.</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๕๕ หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม -->
+        <record id="template_juvenile_transfer" model="legal.form.template">
+            <field name="name">หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม</field>
+            <field name="code">แบบ ๕๕</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">55</field>
+            <field name="description">หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๕๕)</p>
+    <p style="text-align: center; font-size: 16pt; font-weight: bold;">หนังสือส่งตัวเด็กไปไว้โรงเรียน<br/>หรือสถานที่ฝึกและอบรม</p>
+    <p>ที่ ............................................ ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <p><strong>เรียน</strong> ...........................................................................................................................</p>
+    <p style="text-indent: 2.5cm;">ด้วยศาลมีคำสั่งให้ส่งตัวเด็กชื่อ .......................... อายุ .......... ปี ไปไว้ .......................... มีกำหนด .......................... จึงส่งตัวมาพร้อมหนังสือนี้</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๕๖ ทวิ คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง -->
+        <record id="template_cancel_prisoner_transfer" model="legal.form.template">
+            <field name="name">คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง</field>
+            <field name="code">แบบ ๕๖ ทวิ</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">56</field>
+            <field name="description">คำสั่งยกเลิกการเบิกตัวผู้ต้องขังมาศาล</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๕๖ ทวิ)</p>
+    <p style="text-align: center; font-size: 18pt; font-weight: bold;">คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง</p>
+    <p>ที่ ............................................ ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <p><strong>หมายถึง</strong> ผู้บัญชาการเรือนจำ / ผู้อำนวยการทัณฑสถาน ...........................................................</p>
+    <p style="text-indent: 2.5cm;">ตามที่ศาลมีคำสั่งให้เบิกตัว .......................... ผู้ต้องขัง มาศาล นั้น บัดนี้ศาลมีคำสั่งยกเลิกการเบิกตัวดังกล่าว เนื่องจาก ...........................................................................................................................</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๖๑ สัญญาวางข้อกำหนดให้ระวังเด็ก -->
+        <record id="template_child_supervision" model="legal.form.template">
+            <field name="name">สัญญาวางข้อกำหนดให้ระวังเด็ก (ตาม ม.74(2) ป.อาญา)</field>
+            <field name="code">แบบ ๖๑</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">61</field>
+            <field name="description">สัญญาวางข้อกำหนดให้ระวังเด็ก ตาม ป.อาญา มาตรา 74(2)</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๖๑)</p>
+    <p style="text-align: center; font-size: 16pt; font-weight: bold;">สัญญาวางข้อกำหนดให้ระวังเด็ก<br/>(ตามมาตรา ๗๔(๒) แห่งประมวลกฎหมายอาญา)</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p>ศาล ...........................................................................</p>
+    <p style="text-indent: 2.5cm;">ข้าพเจ้า .......................... ผู้ปกครอง/บิดามารดาของเด็กชื่อ .......................... จำเลย ขอทำสัญญาวางข้อกำหนดให้ระวังเด็กไว้ต่อศาล โดยจะระวังเด็กมิให้ก่อเหตุร้ายภายในกำหนด .......................... มิฉะนั้นข้าพเจ้ายอมรับผิดใช้เงินจำนวน .......................... บาท ให้แก่ศาล</p>
+    <br/>
+    <table style="width: 100%;">
+        <tr><td style="width: 40%;"></td><td style="text-align: center;">
+            ลงชื่อ ................................................ ผู้ทำสัญญา<br/><br/>
+            ลงชื่อ ................................................ พยาน<br/><br/>
+            ลงชื่อ ................................................ พยาน
+        </td></tr>
+    </table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ๖๘ รายงานความประจำวัน -->
+        <record id="template_daily_report" model="legal.form.template">
+            <field name="name">รายงานความประจำวัน</field>
+            <field name="code">แบบ ๖๘</field>
+            <field name="category_id" ref="category_general"/>
+            <field name="case_type">all</field>
+            <field name="sequence">68</field>
+            <field name="description">รายงานความประจำวัน สรุปสถิติคดีแพ่ง/อาญาประจำวัน (สำหรับศาลใช้)</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(๖๘) คดีแพ่ง-อาญา</p>
+    <p style="text-align: center; font-size: 20pt; font-weight: bold;">รายงานความประจำวัน</p>
+    <p>ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 14pt;" border="1" cellpadding="5">
+        <thead><tr><th style="width: 40%;">รายการ</th><th style="width: 20%; text-align: center;">แพ่ง (เรื่อง)</th><th style="width: 20%; text-align: center;">อาญา (เรื่อง)</th><th style="width: 20%; text-align: center;">รวม (เรื่อง)</th></tr></thead>
+        <tbody>
+            <tr><td>ความปีก่อนค้างมา</td><td></td><td></td><td></td></tr>
+            <tr><td>ความปีก่อนแล้วไป</td><td></td><td></td><td></td></tr>
+            <tr><td>ความปีก่อนคงค้าง</td><td></td><td></td><td></td></tr>
+            <tr><td>รับฟ้องใหม่</td><td></td><td></td><td></td></tr>
+            <tr><td>คดีแล้วเสร็จ</td><td></td><td></td><td></td></tr>
+            <tr><td>คดีคงค้าง</td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ เจ้าหน้าที่</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- แบบ ข.๕ คำสั่งให้คืนตัวผู้ต้องหา ตาม ม.20 -->
+        <record id="template_kwang_return_suspect" model="legal.form.template">
+            <field name="name">คำสั่งให้คืนตัวผู้ต้องหา ตาม ม.20 (ศาลแขวง)</field>
+            <field name="code">แบบ ข.๕</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">85</field>
+            <field name="description">คำสั่งให้คืนตัวผู้ต้องหา ตาม พ.ร.บ.จัดตั้งศาลแขวงฯ มาตรา 20 (ศาลแขวง)</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(ข. ๕)</p>
+    <p style="text-align: center; font-size: 16pt; font-weight: bold;">คำสั่งให้คืนตัวผู้ต้องหา<br/>ตาม พ.ร.บ.จัดตั้งศาลแขวงฯ มาตรา ๒๐</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p>ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <table style="width: 100%; margin-bottom: 10px;">
+        <tr><td style="width: 15%;">ระหว่าง</td><td>.......................................................................</td><td style="text-align: right;">โจทก์</td></tr>
+        <tr><td></td><td>.......................................................................</td><td style="text-align: right;">จำเลย</td></tr>
+    </table>
+    <p style="text-indent: 2.5cm;">ศาลพิจารณาแล้ว มีคำสั่งให้คืนตัวผู้ต้องหา .......................... ให้แก่พนักงานสอบสวน เนื่องจาก ...........................................................................................................................</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- คป.๑ หนังสือให้สืบเสาะและพินิจ -->
+        <record id="template_probation_order" model="legal.form.template">
+            <field name="name">หนังสือให้สืบเสาะและพินิจ</field>
+            <field name="code">แบบ คป.๑</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">91</field>
+            <field name="description">หนังสือให้สืบเสาะและพินิจ แจ้งผู้อำนวยการสำนักงานคุมประพฤติ</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(คป. ๑)</p>
+    <p style="text-align: center; font-size: 20pt; font-weight: bold;">หนังสือให้สืบเสาะและพินิจ</p>
+    <p>ที่ ศย ............................................ ศาล ...........................................................................</p>
+    <p style="text-align: right;">วันที่ ........... เดือน ............................................ พ.ศ. ๒๕ ...........</p>
+    <p><strong>เรื่อง</strong> แจ้งคำสั่งให้สืบเสาะและพินิจ</p>
+    <p><strong>เรียน</strong> ผู้อำนวยการสำนักงานคุมประพฤติ ........................................</p>
+    <p><strong>สิ่งที่ส่งมาด้วย</strong> สำเนารายงานกระบวนพิจารณา ลงวันที่ .......................... จำนวน .......... แผ่น</p>
+    <p style="text-indent: 2.5cm;">ด้วยคดีหมายเลขดำที่ ..................../๒๕............ ระหว่าง .......................... โจทก์ กับ .......................... จำเลย ข้อหา .......................... ศาลมีคำสั่งให้สืบเสาะและพินิจจำเลย ...........................................................................................................................</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- คป.๓ คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน -->
+        <record id="template_night_entry_order" model="legal.form.template">
+            <field name="name">คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน</field>
+            <field name="code">แบบ คป.๓</field>
+            <field name="category_id" ref="category_criminal"/>
+            <field name="case_type">criminal</field>
+            <field name="sequence">93</field>
+            <field name="description">คำสั่งอนุญาตให้พนักงานคุมประพฤติเข้าไปในสถานที่ในเวลากลางคืน</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'TH SarabunPSK', 'TH Sarabun New', sans-serif; font-size: 16pt; line-height: 1.8; max-width: 18cm; margin: auto;">
+    <p style="text-align: center; font-size: 14pt;">(คป. ๓)</p>
+    <p style="text-align: center; font-size: 18pt; font-weight: bold;">คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน</p>
+    <table style="width: 100%; margin-bottom: 5px;">
+        <tr><td>คดีหมายเลขดำที่ ..................../๒๕............</td><td style="text-align: right;">คดีหมายเลขแดงที่ ..................../๒๕............</td></tr>
+    </table>
+    <p style="text-align: center; font-weight: bold;">ในพระปรมาภิไธยพระมหากษัตริย์</p>
+    <p>ศาล ...........................................................................</p>
+    <p>วันที่ ........... เดือน ............................................ พุทธศักราช ๒๕ ...........</p>
+    <p style="text-indent: 2.5cm;">ด้วยพนักงานคุมประพฤติได้ร้องขอต่อศาล ศาลพิจารณาแล้วอนุญาตให้ .......................... พนักงานคุมประพฤติ เข้าไปในสถานที่ .......................... ในเวลากลางคืน เพื่อ ...........................................................................................................................</p>
+    <br/>
+    <table style="width: 100%;"><tr><td style="width: 50%;"></td><td style="text-align: center;">ลงชื่อ ................................................ ผู้พิพากษา</td></tr></table>
+</div>
+            ]]></field>
+        </record>
+
     </data>
 </odoo>
