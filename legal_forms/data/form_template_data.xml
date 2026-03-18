@@ -4,7 +4,7 @@
 
         <!-- แบบ ๑ หนังสือมอบอำนาจ -->
         <record id="template_power_of_attorney" model="legal.form.template">
-            <field name="name">หนังสือมอบอำนาจ</field>
+            <field name="name">แบบ ๑ หนังสือมอบอำนาจ</field>
             <field name="code">แบบ ๑</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -104,7 +104,7 @@
 
         <!-- แบบ ๗ คำร้อง/คำขอ/คำแถลง -->
         <record id="template_petition" model="legal.form.template">
-            <field name="name">คำร้อง/คำขอ/คำแถลง</field>
+            <field name="name">แบบ ๗ คำร้อง/คำขอ/คำแถลง</field>
             <field name="code">แบบ ๗</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -218,7 +218,7 @@
 
         <!-- แบบ ๙ ใบแต่งทนายความ -->
         <record id="template_appoint_lawyer" model="legal.form.template">
-            <field name="name">ใบแต่งทนายความ</field>
+            <field name="name">แบบ ๙ ใบแต่งทนายความ</field>
             <field name="code">แบบ ๙</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -352,7 +352,7 @@
 
         <!-- แบบ ๑๐ ใบมอบฉันทะ -->
         <record id="template_proxy" model="legal.form.template">
-            <field name="name">ใบมอบฉันทะ</field>
+            <field name="name">แบบ ๑๐ ใบมอบฉันทะ</field>
             <field name="code">แบบ ๑๐</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -459,7 +459,7 @@
 
         <!-- แบบ ๑๕ บัญชีพยาน -->
         <record id="template_witness_list" model="legal.form.template">
-            <field name="name">บัญชีพยาน</field>
+            <field name="name">แบบ ๑๕ บัญชีพยาน</field>
             <field name="code">แบบ ๑๕</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -552,7 +552,7 @@
 
         <!-- แบบ ๘ บัญชีทรัพย์ -->
         <record id="template_property_list" model="legal.form.template">
-            <field name="name">บัญชีทรัพย์</field>
+            <field name="name">แบบ ๘ บัญชีทรัพย์</field>
             <field name="code">แบบ ๘</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">civil</field>
@@ -634,7 +634,7 @@
 
         <!-- แบบ ๔ คำฟ้อง -->
         <record id="template_lawsuit" model="legal.form.template">
-            <field name="name">คำฟ้อง</field>
+            <field name="name">แบบ ๔ คำฟ้อง</field>
             <field name="code">แบบ ๔</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">all</field>
@@ -705,7 +705,7 @@
 
         <!-- แบบ ๕ คำขอท้ายคำฟ้องแพ่ง -->
         <record id="template_civil_tail" model="legal.form.template">
-            <field name="name">คำขอท้ายคำฟ้องแพ่ง</field>
+            <field name="name">แบบ ๕ คำขอท้ายคำฟ้องแพ่ง</field>
             <field name="code">แบบ ๕</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -804,7 +804,7 @@
 
         <!-- แบบ ๖ คำขอท้ายคำฟ้องอาญา -->
         <record id="template_criminal_tail" model="legal.form.template">
-            <field name="name">คำขอท้ายคำฟ้องอาญา</field>
+            <field name="name">แบบ ๖ คำขอท้ายคำฟ้องอาญา</field>
             <field name="code">แบบ ๖</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -911,7 +911,7 @@
 
         <!-- แบบ ๑๑ คำให้การจำเลย -->
         <record id="template_defendant_statement" model="legal.form.template">
-            <field name="name">คำให้การจำเลย</field>
+            <field name="name">แบบ ๑๑ คำให้การจำเลย</field>
             <field name="code">แบบ ๑๑</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">all</field>
@@ -1003,7 +1003,7 @@
 
         <!-- แบบ ๒๙ สัญญาประนีประนอมยอมความ -->
         <record id="template_settlement" model="legal.form.template">
-            <field name="name">สัญญาประนีประนอมยอมความ</field>
+            <field name="name">แบบ ๒๙ สัญญาประนีประนอมยอมความ</field>
             <field name="code">แบบ ๒๙</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -1109,7 +1109,7 @@
 
         <!-- แบบ ๓๒ อุทธรณ์ -->
         <record id="template_appeal" model="legal.form.template">
-            <field name="name">อุทธรณ์</field>
+            <field name="name">แบบ ๓๒ อุทธรณ์</field>
             <field name="code">แบบ ๓๒</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1171,7 +1171,7 @@
 
         <!-- แบบ ๓๓ ท้ายอุทธรณ์ -->
         <record id="template_appeal_tail" model="legal.form.template">
-            <field name="name">ท้ายอุทธรณ์</field>
+            <field name="name">แบบ ๓๓ ท้ายอุทธรณ์</field>
             <field name="code">แบบ ๓๓</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1242,7 +1242,7 @@
 
         <!-- แบบ ๓๔ คำแก้อุทธรณ์ -->
         <record id="template_appeal_rebuttal" model="legal.form.template">
-            <field name="name">คำแก้อุทธรณ์</field>
+            <field name="name">แบบ ๓๔ คำแก้อุทธรณ์</field>
             <field name="code">แบบ ๓๔</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1299,7 +1299,7 @@
 
         <!-- แบบ ๓๕ ท้ายคำแก้อุทธรณ์ -->
         <record id="template_appeal_rebuttal_tail" model="legal.form.template">
-            <field name="name">ท้ายคำแก้อุทธรณ์</field>
+            <field name="name">แบบ ๓๕ ท้ายคำแก้อุทธรณ์</field>
             <field name="code">แบบ ๓๕</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1356,7 +1356,7 @@
 
         <!-- แบบ ๓๖ ฎีกา -->
         <record id="template_supreme_appeal" model="legal.form.template">
-            <field name="name">ฎีกา</field>
+            <field name="name">แบบ ๓๖ ฎีกา</field>
             <field name="code">แบบ ๓๖</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1418,7 +1418,7 @@
 
         <!-- แบบ ๓๗ ท้ายฎีกา -->
         <record id="template_supreme_appeal_tail" model="legal.form.template">
-            <field name="name">ท้ายฎีกา</field>
+            <field name="name">แบบ ๓๗ ท้ายฎีกา</field>
             <field name="code">แบบ ๓๗</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1483,7 +1483,7 @@
 
         <!-- แบบ ๓๘ คำแก้ฎีกา -->
         <record id="template_supreme_rebuttal" model="legal.form.template">
-            <field name="name">คำแก้ฎีกา</field>
+            <field name="name">แบบ ๓๘ คำแก้ฎีกา</field>
             <field name="code">แบบ ๓๘</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1540,7 +1540,7 @@
 
         <!-- แบบ ๓๙ ท้ายคำแก้ฎีกา -->
         <record id="template_supreme_rebuttal_tail" model="legal.form.template">
-            <field name="name">ท้ายคำแก้ฎีกา</field>
+            <field name="name">แบบ ๓๙ ท้ายคำแก้ฎีกา</field>
             <field name="code">แบบ ๓๙</field>
             <field name="category_id" ref="category_appeal"/>
             <field name="case_type">all</field>
@@ -1601,7 +1601,7 @@
 
         <!-- แบบ ๒๔ หมายยึดทรัพย์ชั่วคราว -->
         <record id="template_temp_seizure" model="legal.form.template">
-            <field name="name">หมายยึดทรัพย์ชั่วคราว</field>
+            <field name="name">แบบ ๒๔ หมายยึดทรัพย์ชั่วคราว</field>
             <field name="code">แบบ ๒๔</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -1664,7 +1664,7 @@
 
         <!-- แบบ ๕๗ คำร้องขอปล่อยชั่วคราว -->
         <record id="template_bail_request" model="legal.form.template">
-            <field name="name">คำร้องขอปล่อยชั่วคราว</field>
+            <field name="name">แบบ ๕๗ คำร้องขอปล่อยชั่วคราว</field>
             <field name="code">แบบ ๕๗</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -1743,7 +1743,7 @@
 
         <!-- แบบ ๕๘ สัญญาประกัน -->
         <record id="template_bail_bond" model="legal.form.template">
-            <field name="name">สัญญาประกัน</field>
+            <field name="name">แบบ ๕๘ สัญญาประกัน</field>
             <field name="code">แบบ ๕๘</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -1871,7 +1871,7 @@
 
         <!-- แบบ ๑๒ หมายเรียกคดีมโนสาเร่ -->
         <record id="template_summons_minor" model="legal.form.template">
-            <field name="name">หมายเรียกคดีมโนสาเร่หรือคดีไม่มีข้อยุ่งยาก</field>
+            <field name="name">แบบ ๑๒ หมายเรียกคดีมโนสาเร่หรือคดีไม่มีข้อยุ่งยาก</field>
             <field name="code">แบบ ๑๒</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -1938,7 +1938,7 @@
 
         <!-- แบบ ๑๓ หมายเรียกคดีแพ่งสามัญ -->
         <record id="template_summons_civil" model="legal.form.template">
-            <field name="name">หมายเรียกคดีแพ่งสามัญ</field>
+            <field name="name">แบบ ๑๓ หมายเรียกคดีแพ่งสามัญ</field>
             <field name="code">แบบ ๑๓</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2004,7 +2004,7 @@
 
         <!-- แบบ ๑๔ หมายเรียกคดีอาญา -->
         <record id="template_summons_criminal" model="legal.form.template">
-            <field name="name">หมายเรียกคดีอาญา</field>
+            <field name="name">แบบ ๑๔ หมายเรียกคดีอาญา</field>
             <field name="code">แบบ ๑๔</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2070,7 +2070,7 @@
 
         <!-- แบบ ๑๖ หมายเรียกพยานบุคคล -->
         <record id="template_witness_summons" model="legal.form.template">
-            <field name="name">หมายเรียกพยานบุคคล</field>
+            <field name="name">แบบ ๑๖ หมายเรียกพยานบุคคล</field>
             <field name="code">แบบ ๑๖</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2138,7 +2138,7 @@
 
         <!-- แบบ ๑๙ หมายนัด -->
         <record id="template_appointment" model="legal.form.template">
-            <field name="name">หมายนัด</field>
+            <field name="name">แบบ ๑๙ หมายนัด</field>
             <field name="code">แบบ ๑๙</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2204,7 +2204,7 @@
 
         <!-- แบบ ๒๑ คำเบิกความพยาน -->
         <record id="template_witness_testimony" model="legal.form.template">
-            <field name="name">คำเบิกความพยาน</field>
+            <field name="name">แบบ ๒๑ คำเบิกความพยาน</field>
             <field name="code">แบบ ๒๑</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2264,7 +2264,7 @@
 
         <!-- แบบ ๓๐ คำพิพากษาตามยอม -->
         <record id="template_judgment_consent" model="legal.form.template">
-            <field name="name">คำพิพากษาตามยอม</field>
+            <field name="name">แบบ ๓๐ คำพิพากษาตามยอม</field>
             <field name="code">แบบ ๓๐</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2336,7 +2336,7 @@
 
         <!-- แบบ ๔๑ คำบังคับ -->
         <record id="template_enforcement_order" model="legal.form.template">
-            <field name="name">คำบังคับ</field>
+            <field name="name">แบบ ๔๑ คำบังคับ</field>
             <field name="code">แบบ ๔๑</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2406,7 +2406,7 @@
 
         <!-- แบบ ๔๒ หมายบังคับคดี -->
         <record id="template_execution_writ" model="legal.form.template">
-            <field name="name">หมายบังคับคดี</field>
+            <field name="name">แบบ ๔๒ หมายบังคับคดี</field>
             <field name="code">แบบ ๔๒</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2474,7 +2474,7 @@
 
         <!-- แบบ ๗๕ บัญชีค่าฤชาธรรมเนียม -->
         <record id="template_court_fees" model="legal.form.template">
-            <field name="name">บัญชีค่าฤชาธรรมเนียม</field>
+            <field name="name">แบบ ๗๕ บัญชีค่าฤชาธรรมเนียม</field>
             <field name="code">แบบ ๗๕</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2528,7 +2528,7 @@
 
         <!-- แบบ ๑๗ หมายเรียกพยานเอกสารหรือพยานวัตถุ (คดีอาญา) -->
         <record id="template_doc_evidence_criminal" model="legal.form.template">
-            <field name="name">หมายเรียกพยานเอกสารหรือพยานวัตถุ (คดีอาญา)</field>
+            <field name="name">แบบ ๑๗ หมายเรียกพยานเอกสารหรือพยานวัตถุ (คดีอาญา)</field>
             <field name="code">แบบ ๑๗</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2567,7 +2567,7 @@
 
         <!-- แบบ ๑๘ คำสั่งเรียกพยานเอกสารหรือพยานวัตถุ (คดีแพ่ง) -->
         <record id="template_doc_evidence_civil" model="legal.form.template">
-            <field name="name">คำสั่งเรียกพยานเอกสารหรือพยานวัตถุ (คดีแพ่ง)</field>
+            <field name="name">แบบ ๑๘ คำสั่งเรียกพยานเอกสารหรือพยานวัตถุ (คดีแพ่ง)</field>
             <field name="code">แบบ ๑๘</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2607,7 +2607,7 @@
 
         <!-- แบบ ๒๒ รายงานกระบวนพิจารณา -->
         <record id="template_proceedings_report" model="legal.form.template">
-            <field name="name">รายงานกระบวนพิจารณา</field>
+            <field name="name">แบบ ๒๒ รายงานกระบวนพิจารณา</field>
             <field name="code">แบบ ๒๒</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2642,7 +2642,7 @@
 
         <!-- แบบ ๒๕ หมายอายัดชั่วคราว (ถึงลูกหนี้ของจำเลย) -->
         <record id="template_temp_garnish_debtor" model="legal.form.template">
-            <field name="name">หมายอายัดชั่วคราว (ถึงลูกหนี้ของจำเลย)</field>
+            <field name="name">แบบ ๒๕ หมายอายัดชั่วคราว (ถึงลูกหนี้ของจำเลย)</field>
             <field name="code">แบบ ๒๕</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2682,7 +2682,7 @@
 
         <!-- แบบ ๒๘ หมายห้ามชั่วคราว -->
         <record id="template_temp_injunction" model="legal.form.template">
-            <field name="name">หมายห้ามชั่วคราว</field>
+            <field name="name">แบบ ๒๘ หมายห้ามชั่วคราว</field>
             <field name="code">แบบ ๒๘</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -2722,7 +2722,7 @@
 
         <!-- แบบ ๓๑ คำพิพากษา -->
         <record id="template_judgment" model="legal.form.template">
-            <field name="name">คำพิพากษา</field>
+            <field name="name">แบบ ๓๑ คำพิพากษา</field>
             <field name="code">แบบ ๓๑</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2763,7 +2763,7 @@
 
         <!-- แบบ ๔๔ หนังสือขอแรงทนาย -->
         <record id="template_request_lawyer" model="legal.form.template">
-            <field name="name">หนังสือขอแรงทนาย</field>
+            <field name="name">แบบ ๔๔ หนังสือขอแรงทนาย</field>
             <field name="code">แบบ ๔๔</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -2799,7 +2799,7 @@
 
         <!-- แบบ ๔๗ หมายจับระหว่างพิจารณา -->
         <record id="template_arrest_warrant" model="legal.form.template">
-            <field name="name">หมายจับระหว่างพิจารณา</field>
+            <field name="name">แบบ ๔๗ หมายจับระหว่างพิจารณา</field>
             <field name="code">แบบ ๔๗</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2837,7 +2837,7 @@
 
         <!-- แบบ ๔๘ หมายค้นระหว่างพิจารณา -->
         <record id="template_search_warrant" model="legal.form.template">
-            <field name="name">หมายค้นระหว่างพิจารณา</field>
+            <field name="name">แบบ ๔๘ หมายค้นระหว่างพิจารณา</field>
             <field name="code">แบบ ๔๘</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2874,7 +2874,7 @@
 
         <!-- แบบ ๕๓ หมายปล่อย -->
         <record id="template_release_warrant" model="legal.form.template">
-            <field name="name">หมายปล่อย</field>
+            <field name="name">แบบ ๕๓ หมายปล่อย</field>
             <field name="code">แบบ ๕๓</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2915,7 +2915,7 @@
 
         <!-- แบบ ๕๙ ทัณฑ์บน -->
         <record id="template_peace_bond" model="legal.form.template">
-            <field name="name">ทัณฑ์บน (ตามมาตรา ๔๖ แห่งประมวลกฎหมายอาญา)</field>
+            <field name="name">แบบ ๕๙ ทัณฑ์บน (ตามมาตรา ๔๖ แห่งประมวลกฎหมายอาญา)</field>
             <field name="code">แบบ ๕๙</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -2966,7 +2966,7 @@
 
         <!-- แบบ ๖๒ ใบรับหนังสือหรือหมาย -->
         <record id="template_receipt_document" model="legal.form.template">
-            <field name="name">ใบรับหนังสือหรือหมาย</field>
+            <field name="name">แบบ ๖๒ ใบรับหนังสือหรือหมาย</field>
             <field name="code">แบบ ๖๒</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3006,7 +3006,7 @@
 
         <!-- แบบ ๑ ปกหน้าสำนวน -->
         <record id="template_case_cover" model="legal.form.template">
-            <field name="name">ปกหน้าสำนวน</field>
+            <field name="name">แบบ ๑ ปกหน้าสำนวน</field>
             <field name="code">แบบ ๑</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3036,7 +3036,7 @@
 
         <!-- แบบ ๓ สารบาญ -->
         <record id="template_case_index" model="legal.form.template">
-            <field name="name">สารบาญ</field>
+            <field name="name">แบบ ๓ สารบาญ</field>
             <field name="code">แบบ ๓</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3080,7 +3080,7 @@
 
         <!-- แบบ ๒๓ รายงานเจ้าหน้าที่ -->
         <record id="template_officer_report" model="legal.form.template">
-            <field name="name">รายงานเจ้าหน้าที่</field>
+            <field name="name">แบบ ๒๓ รายงานเจ้าหน้าที่</field>
             <field name="code">แบบ ๒๓</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3114,7 +3114,7 @@
 
         <!-- แบบ ๔๙ หมายขังระหว่างสอบสวน -->
         <record id="template_detention_investigation" model="legal.form.template">
-            <field name="name">หมายขังระหว่างสอบสวน</field>
+            <field name="name">แบบ ๔๙ หมายขังระหว่างสอบสวน</field>
             <field name="code">แบบ ๔๙</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3143,7 +3143,7 @@
 
         <!-- แบบ ๕๐ หมายขังระหว่างไต่สวนมูลฟ้องหรือพิจารณา -->
         <record id="template_detention_trial" model="legal.form.template">
-            <field name="name">หมายขังระหว่างไต่สวนมูลฟ้องหรือพิจารณา</field>
+            <field name="name">แบบ ๕๐ หมายขังระหว่างไต่สวนมูลฟ้องหรือพิจารณา</field>
             <field name="code">แบบ ๕๐</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3180,7 +3180,7 @@
 
         <!-- แบบ ๕๑ หมายจำคุกและกักขังระหว่างอุทธรณ์ฎีกา -->
         <record id="template_imprison_appeal" model="legal.form.template">
-            <field name="name">หมายจำคุกและกักขังระหว่างอุทธรณ์ฎีกา</field>
+            <field name="name">แบบ ๕๑ หมายจำคุกและกักขังระหว่างอุทธรณ์ฎีกา</field>
             <field name="code">แบบ ๕๑</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3217,7 +3217,7 @@
 
         <!-- แบบ ๕๒ หมายจำคุกและกักขังเมื่อคดีถึงที่สุด -->
         <record id="template_imprison_final" model="legal.form.template">
-            <field name="name">หมายจำคุกและกักขังเมื่อคดีถึงที่สุด</field>
+            <field name="name">แบบ ๕๒ หมายจำคุกและกักขังเมื่อคดีถึงที่สุด</field>
             <field name="code">แบบ ๕๒</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3251,7 +3251,7 @@
 
         <!-- แบบ ๖๓ ใบรับของกลาง -->
         <record id="template_receipt_evidence" model="legal.form.template">
-            <field name="name">ใบรับของกลาง</field>
+            <field name="name">แบบ ๖๓ ใบรับของกลาง</field>
             <field name="code">แบบ ๖๓</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3293,7 +3293,7 @@
 
         <!-- แบบ ๖๕ ใบรับเอกสารและหลักฐาน -->
         <record id="template_receipt_docs" model="legal.form.template">
-            <field name="name">ใบรับเอกสารและหลักฐาน</field>
+            <field name="name">แบบ ๖๕ ใบรับเอกสารและหลักฐาน</field>
             <field name="code">แบบ ๖๕</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3328,7 +3328,7 @@
 
         <!-- แบบ ข.๑ บันทึกฟ้องด้วยวาจา (ศาลแขวง) -->
         <record id="template_kwang_oral_complaint" model="legal.form.template">
-            <field name="name">บันทึกฟ้องด้วยวาจา (ศาลแขวง)</field>
+            <field name="name">แบบ ข.๑ บันทึกฟ้องด้วยวาจา (ศาลแขวง)</field>
             <field name="code">แบบ ข.๑</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3365,7 +3365,7 @@
 
         <!-- แบบ ข.๔ บันทึกคำฟ้อง คำสารภาพ คำพิพากษา ตาม ม.20 -->
         <record id="template_kwang_m20" model="legal.form.template">
-            <field name="name">บันทึกคำฟ้อง คำสารภาพ คำพิพากษา ตาม ม.20 (ศาลแขวง)</field>
+            <field name="name">แบบ ข.๔ บันทึกคำฟ้อง คำสารภาพ คำพิพากษา ตาม ม.20 (ศาลแขวง)</field>
             <field name="code">แบบ ข.๔</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3405,7 +3405,7 @@
 
         <!-- แบบ ๑๕ ทวิ บัญชีพยาน (แบบตาราง) -->
         <record id="template_witness_list_table" model="legal.form.template">
-            <field name="name">บัญชีพยาน (แบบตาราง)</field>
+            <field name="name">แบบ ๑๕ ทวิ บัญชีพยาน (แบบตาราง)</field>
             <field name="code">แบบ ๑๕ ทวิ</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3440,7 +3440,7 @@
 
         <!-- แบบ ๑๙ ทวิ คำสั่งเรียกตัวความ -->
         <record id="template_party_summons" model="legal.form.template">
-            <field name="name">คำสั่งเรียกตัวความ</field>
+            <field name="name">แบบ ๑๙ ทวิ คำสั่งเรียกตัวความ</field>
             <field name="code">แบบ ๑๙ ทวิ</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3471,7 +3471,7 @@
 
         <!-- แบบ ๑๙ ตรี หมายนัดไต่สวนมูลฟ้อง -->
         <record id="template_preliminary_hearing" model="legal.form.template">
-            <field name="name">หมายนัดไต่สวนมูลฟ้อง</field>
+            <field name="name">แบบ ๑๙ ตรี หมายนัดไต่สวนมูลฟ้อง</field>
             <field name="code">แบบ ๑๙ ตรี</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3502,7 +3502,7 @@
 
         <!-- แบบ ๒๑ ทวิ บันทึกถ้อยคำแทนการซักถามพยาน -->
         <record id="template_witness_deposition" model="legal.form.template">
-            <field name="name">บันทึกถ้อยคำแทนการซักถามพยาน</field>
+            <field name="name">แบบ ๒๑ ทวิ บันทึกถ้อยคำแทนการซักถามพยาน</field>
             <field name="code">แบบ ๒๑ ทวิ</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3533,7 +3533,7 @@
 
         <!-- แบบ ๒๖ หมายอายัดชั่วคราว (ถึงจำเลย) -->
         <record id="template_temp_garnish_defendant" model="legal.form.template">
-            <field name="name">หมายอายัดชั่วคราว (ถึงจำเลย)</field>
+            <field name="name">แบบ ๒๖ หมายอายัดชั่วคราว (ถึงจำเลย)</field>
             <field name="code">แบบ ๒๖</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -3564,7 +3564,7 @@
 
         <!-- แบบ ๒๗ หมายอายัดชั่วคราว (ถึงเจ้าพนักงานบังคับคดี) -->
         <record id="template_temp_garnish_officer" model="legal.form.template">
-            <field name="name">หมายอายัดชั่วคราว (ถึงเจ้าพนักงานบังคับคดี)</field>
+            <field name="name">แบบ ๒๗ หมายอายัดชั่วคราว (ถึงเจ้าพนักงานบังคับคดี)</field>
             <field name="code">แบบ ๒๗</field>
             <field name="category_id" ref="category_civil"/>
             <field name="case_type">civil</field>
@@ -3595,7 +3595,7 @@
 
         <!-- แบบ ๔๕ หนังสือส่งสำนวน -->
         <record id="template_case_transfer" model="legal.form.template">
-            <field name="name">หนังสือส่งสำนวน</field>
+            <field name="name">แบบ ๔๕ หนังสือส่งสำนวน</field>
             <field name="code">แบบ ๔๕</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3618,7 +3618,7 @@
 
         <!-- แบบ ๔๖ หนังสือส่งสำนวนคืน -->
         <record id="template_case_return" model="legal.form.template">
-            <field name="name">หนังสือส่งสำนวนคืน</field>
+            <field name="name">แบบ ๔๖ หนังสือส่งสำนวนคืน</field>
             <field name="code">แบบ ๔๖</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3641,7 +3641,7 @@
 
         <!-- แบบ ๔๗ ทวิ หมายจับ (ก่อนฟ้อง) -->
         <record id="template_arrest_warrant_pre" model="legal.form.template">
-            <field name="name">หมายจับ</field>
+            <field name="name">แบบ ๔๗ ทวิ หมายจับ</field>
             <field name="code">แบบ ๔๗ ทวิ</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3666,7 +3666,7 @@
 
         <!-- แบบ ๔๘ ทวิ หมายค้น (ก่อนฟ้อง) -->
         <record id="template_search_warrant_pre" model="legal.form.template">
-            <field name="name">หมายค้น</field>
+            <field name="name">แบบ ๔๘ ทวิ หมายค้น</field>
             <field name="code">แบบ ๔๘ ทวิ</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3690,7 +3690,7 @@
 
         <!-- แบบ ๕๖ คำสั่งเบิกตัวผู้ต้องขัง -->
         <record id="template_prisoner_transfer" model="legal.form.template">
-            <field name="name">คำสั่งเบิกตัวผู้ต้องขัง</field>
+            <field name="name">แบบ ๕๖ คำสั่งเบิกตัวผู้ต้องขัง</field>
             <field name="code">แบบ ๕๖</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3712,7 +3712,7 @@
 
         <!-- แบบ ๖๐ สัญญาประกัน ตามมาตรา 46 -->
         <record id="template_bail_bond_m46" model="legal.form.template">
-            <field name="name">สัญญาประกัน (ตามมาตรา ๔๖ แห่ง ป.อาญา)</field>
+            <field name="name">แบบ ๖๐ สัญญาประกัน (ตามมาตรา ๔๖ แห่ง ป.อาญา)</field>
             <field name="code">แบบ ๖๐</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3745,7 +3745,7 @@
 
         <!-- แบบ ๖๖ ใบรับสิ่งของ -->
         <record id="template_receipt_items" model="legal.form.template">
-            <field name="name">ใบรับสิ่งของ</field>
+            <field name="name">แบบ ๖๖ ใบรับสิ่งของ</field>
             <field name="code">แบบ ๖๖</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3777,7 +3777,7 @@
 
         <!-- แบบ ข.๒ บันทึกคำให้การจำเลยด้วยวาจา (ศาลแขวง) -->
         <record id="template_kwang_oral_defense" model="legal.form.template">
-            <field name="name">บันทึกคำให้การจำเลยด้วยวาจา (ศาลแขวง)</field>
+            <field name="name">แบบ ข.๒ บันทึกคำให้การจำเลยด้วยวาจา (ศาลแขวง)</field>
             <field name="code">แบบ ข.๒</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3808,7 +3808,7 @@
 
         <!-- แบบ ข.๓ บันทึกคำเบิกความของพยาน (ศาลแขวง) -->
         <record id="template_kwang_witness" model="legal.form.template">
-            <field name="name">บันทึกคำเบิกความของพยาน (ศาลแขวง)</field>
+            <field name="name">แบบ ข.๓ บันทึกคำเบิกความของพยาน (ศาลแขวง)</field>
             <field name="code">แบบ ข.๓</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3843,7 +3843,7 @@
 
         <!-- แบบ ๒ หน้าสำนวน -->
         <record id="template_case_face" model="legal.form.template">
-            <field name="name">หน้าสำนวน</field>
+            <field name="name">แบบ ๒ หน้าสำนวน</field>
             <field name="code">แบบ ๒</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3870,7 +3870,7 @@
 
         <!-- แบบ ๗๖ ปกหลังสำนวน -->
         <record id="template_case_back" model="legal.form.template">
-            <field name="name">ปกหลังสำนวน</field>
+            <field name="name">แบบ ๗๖ ปกหลังสำนวน</field>
             <field name="code">แบบ ๗๖</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3887,7 +3887,7 @@
 
         <!-- แบบ ๒๐ บันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด -->
         <record id="template_witness_notice" model="legal.form.template">
-            <field name="name">บันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด</field>
+            <field name="name">แบบ ๒๐ บันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด</field>
             <field name="code">แบบ ๒๐</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -3915,7 +3915,7 @@
 
         <!-- แบบ ๕๔ หมายเรียกผู้คุมขัง (ตาม ม.90 ป.วิ.อ.) -->
         <record id="template_custodian_summons" model="legal.form.template">
-            <field name="name">หมายเรียกผู้คุมขัง (ตามมาตรา ๙๐ ป.วิ.อ.)</field>
+            <field name="name">แบบ ๕๔ หมายเรียกผู้คุมขัง (ตามมาตรา ๙๐ ป.วิ.อ.)</field>
             <field name="code">แบบ ๕๔</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3941,7 +3941,7 @@
 
         <!-- แบบ ๕๕ หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม -->
         <record id="template_juvenile_transfer" model="legal.form.template">
-            <field name="name">หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม</field>
+            <field name="name">แบบ ๕๕ หนังสือส่งตัวเด็กไปไว้โรงเรียนหรือสถานที่ฝึกและอบรม</field>
             <field name="code">แบบ ๕๕</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3963,7 +3963,7 @@
 
         <!-- แบบ ๕๖ ทวิ คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง -->
         <record id="template_cancel_prisoner_transfer" model="legal.form.template">
-            <field name="name">คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง</field>
+            <field name="name">แบบ ๕๖ ทวิ คำสั่งยกเลิกการเบิกตัวผู้ต้องขัง</field>
             <field name="code">แบบ ๕๖ ทวิ</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -3985,7 +3985,7 @@
 
         <!-- แบบ ๖๑ สัญญาวางข้อกำหนดให้ระวังเด็ก -->
         <record id="template_child_supervision" model="legal.form.template">
-            <field name="name">สัญญาวางข้อกำหนดให้ระวังเด็ก (ตาม ม.74(2) ป.อาญา)</field>
+            <field name="name">แบบ ๖๑ สัญญาวางข้อกำหนดให้ระวังเด็ก (ตาม ม.74(2) ป.อาญา)</field>
             <field name="code">แบบ ๖๑</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4014,7 +4014,7 @@
 
         <!-- แบบ ๖๘ รายงานความประจำวัน -->
         <record id="template_daily_report" model="legal.form.template">
-            <field name="name">รายงานความประจำวัน</field>
+            <field name="name">แบบ ๖๘ รายงานความประจำวัน</field>
             <field name="code">แบบ ๖๘</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -4045,7 +4045,7 @@
 
         <!-- แบบ ข.๕ คำสั่งให้คืนตัวผู้ต้องหา ตาม ม.20 -->
         <record id="template_kwang_return_suspect" model="legal.form.template">
-            <field name="name">คำสั่งให้คืนตัวผู้ต้องหา ตาม ม.20 (ศาลแขวง)</field>
+            <field name="name">แบบ ข.๕ คำสั่งให้คืนตัวผู้ต้องหา ตาม ม.20 (ศาลแขวง)</field>
             <field name="code">แบบ ข.๕</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4073,7 +4073,7 @@
 
         <!-- คป.๑ หนังสือให้สืบเสาะและพินิจ -->
         <record id="template_probation_order" model="legal.form.template">
-            <field name="name">หนังสือให้สืบเสาะและพินิจ</field>
+            <field name="name">แบบ คป.๑ หนังสือให้สืบเสาะและพินิจ</field>
             <field name="code">แบบ คป.๑</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4097,7 +4097,7 @@
 
         <!-- คป.๓ คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน -->
         <record id="template_night_entry_order" model="legal.form.template">
-            <field name="name">คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน</field>
+            <field name="name">แบบ คป.๓ คำสั่งอนุญาตให้เข้าไปในสถานที่ในเวลากลางคืน</field>
             <field name="code">แบบ คป.๓</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4126,7 +4126,7 @@
 
         <!-- แบบ ๒๐ ทวิ ใบรับบันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด -->
         <record id="template_witness_notice_receipt" model="legal.form.template">
-            <field name="name">ใบรับบันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด</field>
+            <field name="name">แบบ ๒๐ ทวิ ใบรับบันทึกเจ้าหน้าที่เรื่องให้พยานทราบกำหนดนัด</field>
             <field name="code">แบบ ๒๐ ทวิ</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -4156,7 +4156,7 @@
 
         <!-- แบบ ๕๑ ทวิ หมายกักขังระหว่างอุทธรณ์ฎีกา -->
         <record id="template_detain_appeal" model="legal.form.template">
-            <field name="name">หมายกักขังระหว่างอุทธรณ์ฎีกา</field>
+            <field name="name">แบบ ๕๑ ทวิ หมายกักขังระหว่างอุทธรณ์ฎีกา</field>
             <field name="code">แบบ ๕๑ ทวิ</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4186,7 +4186,7 @@
 
         <!-- แบบ ๕๑ ตรี หมายจำคุกระหว่างอุทธรณ์ฎีกา -->
         <record id="template_imprison_only_appeal" model="legal.form.template">
-            <field name="name">หมายจำคุกระหว่างอุทธรณ์ฎีกา</field>
+            <field name="name">แบบ ๕๑ ตรี หมายจำคุกระหว่างอุทธรณ์ฎีกา</field>
             <field name="code">แบบ ๕๑ ตรี</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4216,7 +4216,7 @@
 
         <!-- แบบ ๕๒ ทวิ หมายกักขังเมื่อคดีถึงที่สุด -->
         <record id="template_detain_final" model="legal.form.template">
-            <field name="name">หมายกักขังเมื่อคดีถึงที่สุด</field>
+            <field name="name">แบบ ๕๒ ทวิ หมายกักขังเมื่อคดีถึงที่สุด</field>
             <field name="code">แบบ ๕๒ ทวิ</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4242,7 +4242,7 @@
 
         <!-- แบบ ๕๒ ตรี หมายจำคุกเมื่อคดีถึงที่สุด -->
         <record id="template_imprison_only_final" model="legal.form.template">
-            <field name="name">หมายจำคุกเมื่อคดีถึงที่สุด</field>
+            <field name="name">แบบ ๕๒ ตรี หมายจำคุกเมื่อคดีถึงที่สุด</field>
             <field name="code">แบบ ๕๒ ตรี</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4268,7 +4268,7 @@
 
         <!-- แบบ ๗๒ บัญชีวันทำการและวันหยุดราชการศาล -->
         <record id="template_court_calendar" model="legal.form.template">
-            <field name="name">บัญชีวันทำการและวันหยุดราชการศาล</field>
+            <field name="name">แบบ ๗๒ บัญชีวันทำการและวันหยุดราชการศาล</field>
             <field name="code">แบบ ๗๒</field>
             <field name="category_id" ref="category_general"/>
             <field name="case_type">all</field>
@@ -4298,7 +4298,7 @@
 
         <!-- คป.๒ หนังสือให้สืบเสาะและพินิจ (เพิ่มเติม) -->
         <record id="template_probation_additional" model="legal.form.template">
-            <field name="name">หนังสือให้สืบเสาะและพินิจ (เพิ่มเติม)</field>
+            <field name="name">แบบ คป.๒ หนังสือให้สืบเสาะและพินิจ (เพิ่มเติม)</field>
             <field name="code">แบบ คป.๒</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4322,7 +4322,7 @@
 
         <!-- คป.๔ หนังสือแจ้งคำพิพากษา -->
         <record id="template_probation_judgment" model="legal.form.template">
-            <field name="name">หนังสือแจ้งคำพิพากษา (คุมประพฤติ)</field>
+            <field name="name">แบบ คป.๔ หนังสือแจ้งคำพิพากษา (คุมประพฤติ)</field>
             <field name="code">แบบ คป.๔</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4346,7 +4346,7 @@
 
         <!-- คป.๕ หนังสือแจ้งการเปลี่ยนแปลงคำพิพากษาหรือคำสั่ง -->
         <record id="template_probation_change" model="legal.form.template">
-            <field name="name">หนังสือแจ้งการเปลี่ยนแปลงคำพิพากษาหรือคำสั่ง</field>
+            <field name="name">แบบ คป.๕ หนังสือแจ้งการเปลี่ยนแปลงคำพิพากษาหรือคำสั่ง</field>
             <field name="code">แบบ คป.๕</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
@@ -4370,7 +4370,7 @@
 
         <!-- คป.๖ หนังสือแจ้งงดการสืบเสาะและพินิจ -->
         <record id="template_probation_cancel" model="legal.form.template">
-            <field name="name">หนังสือแจ้งงดการสืบเสาะและพินิจ</field>
+            <field name="name">แบบ คป.๖ หนังสือแจ้งงดการสืบเสาะและพินิจ</field>
             <field name="code">แบบ คป.๖</field>
             <field name="category_id" ref="category_criminal"/>
             <field name="case_type">criminal</field>
