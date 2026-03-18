@@ -21,7 +21,16 @@
 
 ดูคู่มือฉบับเต็มสำหรับผู้ใช้งานที่ **[USER_GUIDE.md](USER_GUIDE.md)**
 
-## Installation
+## Quick Start (GitHub Codespaces)
+
+วิธีที่เร็วที่สุด — ไม่ต้อง setup อะไรเลย:
+
+1. กดปุ่ม **Code** → **Codespaces** → **Create codespace on 18.0**
+2. รอ build (~3-5 นาที ครั้งแรก) — ระบบจะติดตั้ง Odoo + PostgreSQL + module ให้อัตโนมัติ
+3. ใน terminal รัน: `odoo --config=/workspace/.devcontainer/odoo.conf`
+4. เปิด browser ไปที่ port 8069 → Login: `admin` / `admin`
+
+## Installation (Manual)
 
 1. Copy โฟลเดอร์ `legal_forms` ไปยัง Odoo addons path
 2. Restart Odoo server
