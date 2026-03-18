@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-thai-tlwg \
     && rm -rf /var/lib/apt/lists/*
 
-# Allow odoo user to use sudo
-RUN echo "odoo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# Allow odoo user to use sudo and set bash as shell
+RUN echo "odoo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+    && chsh -s /bin/bash odoo
 
 USER odoo
