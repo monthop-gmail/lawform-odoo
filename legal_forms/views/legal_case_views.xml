@@ -92,7 +92,7 @@
                         domain="[('case_type', '=', 'civil')]"/>
                 <filter string="คดีอาญา" name="criminal"
                         domain="[('case_type', '=', 'criminal')]"/>
-                <group expand="0" string="จัดกลุ่ม">
+                <group>
                     <filter string="ประเภทคดี" name="group_type"
                             context="{'group_by': 'case_type'}"/>
                     <filter string="สถานะ" name="group_state"

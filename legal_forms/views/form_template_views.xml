@@ -72,7 +72,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="category_id"/>
-                <group expand="0" string="จัดกลุ่ม">
+                <group>
                     <filter string="หมวด" name="group_category"
                             context="{'group_by': 'category_id'}"/>
                     <filter string="ประเภทคดี" name="group_type"
