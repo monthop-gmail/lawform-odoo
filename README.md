@@ -3,6 +3,17 @@
 ระบบจัดการแบบฟอร์มศาลและเอกสารทางกฎหมายสำหรับ Odoo 19
 แรงบันดาลใจจากโปรแกรม LawForm ของบริษัท ไฮเปอร์ซอฟท์ จำกัด (1998-2010)
 
+## Quick Start (GitHub Codespaces)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/monthop-gmail/lawform-odoo)
+
+1. กดปุ่มด้านบน หรือไปที่ **Code > Codespaces > Create codespace on main**
+2. รอ build (~3-5 นาที) — ระบบจะ start Odoo 19 + PostgreSQL + init module ให้อัตโนมัติ
+3. เปิด browser ที่ port 8069 — พร้อมใช้งาน!
+4. Login: **admin / admin**
+
+> ไม่ต้องพิมพ์ command เพิ่มเติม — ทุกอย่างถูกจัดการผ่าน docker-in-docker โดยอัตโนมัติ
+
 ## Features
 
 - จัดการ **คดีความ** — เลขคดี, ศาล, คู่ความ, สถานะคดี
@@ -31,6 +42,22 @@
 4. เปิด browser ไปที่ port 8069 → Login: `admin` / `admin`
 
 ## Installation (Manual)
+
+### วิธี A: GitHub Codespaces (แนะนำ)
+
+กดปุ่ม **Code > Codespaces > Create codespace on main** บน GitHub แล้วรอ — ได้ Odoo 19 + PostgreSQL + legal_forms module พร้อมใช้เลย
+
+### วิธี B: Docker Compose
+
+```bash
+git clone https://github.com/monthop-gmail/lawform-odoo.git
+cd lawform-odoo
+docker compose up -d --build
+```
+
+เปิด browser: `http://localhost:8069`
+
+### วิธี C: ติดตั้งเอง
 
 1. Copy โฟลเดอร์ `legal_forms` ไปยัง Odoo addons path
 2. Restart Odoo server
