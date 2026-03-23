@@ -26,11 +26,29 @@
 วิธีที่เร็วที่สุด — ไม่ต้อง setup อะไรเลย:
 
 1. กดปุ่ม **Code** → **Codespaces** → **Create codespace on 18.0**
-2. รอ build (~3-5 นาที ครั้งแรก) — ระบบจะติดตั้ง Odoo + PostgreSQL + module ให้อัตโนมัติ
-3. ใน terminal รัน: `odoo --config=/workspace/.devcontainer/odoo.conf`
-4. เปิด browser ไปที่ port 8069 → Login: `admin` / `admin`
+2. รอ build (~3-5 นาที) — ระบบจะ start Odoo 18 + PostgreSQL + init module ให้อัตโนมัติ
+3. เปิด browser ที่ port 8069 — พร้อมใช้งาน!
+4. Login: **admin / admin**
+
+> ไม่ต้องพิมพ์ command เพิ่มเติม — ทุกอย่างถูกจัดการผ่าน docker-in-docker โดยอัตโนมัติ
 
 ## Installation (Manual)
+
+### วิธี A: GitHub Codespaces (แนะนำ)
+
+กดปุ่ม **Code > Codespaces > Create codespace on 18.0** บน GitHub แล้วรอ — ได้ Odoo 18 + PostgreSQL + legal_forms module พร้อมใช้เลย
+
+### วิธี B: Docker Compose
+
+```bash
+git clone https://github.com/monthop-gmail/lawform-odoo.git -b 18.0
+cd lawform-odoo
+docker compose up -d --build
+```
+
+เปิด browser: `http://localhost:8069`
+
+### วิธี C: ติดตั้งเอง
 
 1. Copy โฟลเดอร์ `legal_forms` ไปยัง Odoo addons path
 2. Restart Odoo server

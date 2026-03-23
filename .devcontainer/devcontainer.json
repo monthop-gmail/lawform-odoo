@@ -1,51 +1,47 @@
 {
-    "name": "LawForm - Odoo 18 Dev",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "odoo",
-    "workspaceFolder": "/workspace",
-    "remoteUser": "odoo",
+  "name": "LawForm - Odoo 18 Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
-    "features": {
-        "ghcr.io/devcontainers/features/github-cli:1": {}
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "forwardPorts": [8069, 8072],
+  "portsAttributes": {
+    "8069": {
+      "label": "Odoo Web",
+      "onAutoForward": "openBrowser"
     },
-
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "python.defaultInterpreterPath": "/usr/bin/python3",
-                "editor.tabSize": 4,
-                "files.encoding": "utf8",
-                "[python]": {
-                    "editor.tabSize": 4
-                },
-                "[xml]": {
-                    "editor.tabSize": 4
-                }
-            },
-            "extensions": [
-                "ms-python.python",
-                "ms-python.pylint",
-                "redhat.vscode-xml",
-                "odoo-ide.odoo",
-                "mstuttgart.odoo-snippets"
-            ]
-        }
-    },
-
-    "forwardPorts": [8069, 8072],
-    "portsAttributes": {
-        "8069": {
-            "label": "Odoo Web",
-            "onAutoForward": "openBrowser"
-        },
-        "8072": {
-            "label": "Odoo Livechat"
-        }
-    },
-
-    "postCreateCommand": "bash .devcontainer/setup.sh",
-
-    "remoteEnv": {
-        "ODOO_RC": "/workspace/.devcontainer/odoo.conf"
+    "8072": {
+      "label": "Odoo Livechat",
+      "onAutoForward": "ignore"
     }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.tabSize": 4,
+        "files.encoding": "utf8",
+        "[python]": {
+          "editor.tabSize": 4
+        },
+        "[xml]": {
+          "editor.tabSize": 4
+        }
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "redhat.vscode-xml",
+        "odoo-ide.odoo",
+        "mstuttgart.odoo-snippets",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
 }

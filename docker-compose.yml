@@ -1,12 +1,11 @@
-version: "3.8"
-
 services:
   odoo:
     build:
-      context: .
+      context: .devcontainer
       dockerfile: Dockerfile
+    entrypoint: ["/bin/bash", "/workspace/.devcontainer/entrypoint.sh"]
     volumes:
-      - ..:/workspace:cached
+      - .:/workspace:cached
       - odoo-data:/var/lib/odoo
     ports:
       - "8069:8069"
@@ -18,7 +17,7 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
-    command: sleep infinity
+    restart: unless-stopped
 
   db:
     image: postgres:15
