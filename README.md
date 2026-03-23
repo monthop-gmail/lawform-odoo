@@ -49,11 +49,11 @@ legal_forms/
 │   ├── text_annotation.py     # ข้อความแทรกอิสระ
 │   └── witness_list.py        # บัญชีพยาน
 ├── views/
-│   ├── menu.xml               # เมนูหลัก 3 กลุ่ม (คดีความ/เอกสาร/ตั้งค่า)
 │   ├── legal_case_views.xml
 │   ├── form_template_views.xml
 │   ├── form_document_views.xml
-│   └── printer_config_views.xml
+│   ├── printer_config_views.xml
+│   └── menu.xml               # เมนูหลัก 3 กลุ่ม (โหลดท้ายสุด)
 ├── data/
 │   ├── form_category_data.xml     # 10 หมวดแบบฟอร์ม
 │   └── form_template_data.xml     # 93 แบบฟอร์มจากศาลยุติธรรม
