@@ -32,10 +32,6 @@ for i in $(seq 1 120); do
     sleep 2
 done
 
-# Stop containers cleanly — so they restart fast from prebuild cache
-echo "Stopping containers (clean state for fast restart)..."
-docker compose stop 2>&1 | tail -5
-
 echo ""
 echo "=== First-time setup complete! ==="
-echo "    Prebuild cached. Next start will be fast (~30-60s)."
+echo "    Subsequent starts will be much faster."
