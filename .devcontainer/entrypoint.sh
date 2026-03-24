@@ -29,4 +29,4 @@ if [ "$MODULE_INSTALLED" != "1" ]; then
 fi
 
 echo "Database 'lawform' ready, module installed. Starting Odoo..."
-exec odoo --config=/workspace/.devcontainer/odoo.conf
+exec odoo --config=/workspace/.devcontainer/odoo.conf --max-cron-threads=0

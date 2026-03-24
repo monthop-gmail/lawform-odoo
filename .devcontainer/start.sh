@@ -12,17 +12,18 @@ for i in $(seq 1 15); do
     sleep 1
 done
 
-# Start containers (no build — already built in setup.sh)
-docker compose up -d 2>&1 | tail -5
+# Start existing containers (fast — no build, no create, just start)
+# Falls back to 'up -d' if containers don't exist yet
+docker compose start 2>&1 || docker compose up -d 2>&1 | tail -5
 
-# Wait for Odoo (should be fast — DB already initialized)
+# Wait for Odoo (DB + modules already cached — just loading)
 echo "Waiting for Odoo..."
-for i in $(seq 1 60); do
+for i in $(seq 1 90); do
     if curl -s -o /dev/null -w "%{http_code}" http://localhost:8069/web/login 2>/dev/null | grep -q "200"; then
         echo "Odoo ready! (${i}s)"
         break
     fi
-    sleep 2
+    sleep 1
 done
 
 # Set ports public in Codespace
