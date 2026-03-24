@@ -12,9 +12,8 @@ for i in $(seq 1 15); do
     sleep 1
 done
 
-# Start existing containers (fast — no build, no create, just start)
-# Falls back to 'up -d' if containers don't exist yet
-docker compose start 2>&1 || docker compose up -d 2>&1 | tail -5
+# Start containers (no --build, images already cached from setup.sh)
+docker compose up -d 2>&1 | tail -5
 
 # Wait for Odoo (DB + modules already cached — just loading)
 echo "Waiting for Odoo..."
