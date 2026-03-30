@@ -1,6 +1,6 @@
 {
     'name': 'Legal Forms (แบบฟอร์มศาล)',
-    'version': '19.0.1.1.0',
+    'version': '19.0.1.2.0',
     'category': 'Services/Legal',
     'summary': 'แบบฟอร์มศาลและเอกสารทางกฎหมาย',
     'description': """
@@ -29,4 +29,5 @@
     'installable': True,
     'application': True,
     'auto_install': False,
+    'post_init_hook': 'post_init_hook',
 }

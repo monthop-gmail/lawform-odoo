@@ -200,6 +200,11 @@ class FormDocument(models.Model):
             # --- ข้อมูลบุคคล: โจทก์/จำเลย (เพิ่มเติม) ---
             '%(plaintiff_fax)s': p.fax or '',
             '%(defendant_fax)s': d.fax or '',
+            # --- คู่ความหลายคน (join ชื่อด้วย ", ") ---
+            '%(plaintiffs)s': self._join_party_names(case.plaintiff_ids) if case else '',
+            '%(defendants)s': self._join_party_names(case.defendant_ids) if case else '',
+            '%(plaintiffs_full)s': self._join_party_details(case.plaintiff_ids) if case else '',
+            '%(defendants_full)s': self._join_party_details(case.defendant_ids) if case else '',
             # --- ข้อมูลเฉพาะเอกสาร ---
             '%(agent)s': self.agent_id.name or '',
             '%(agent_address)s': self._format_address(self.agent_id),
@@ -232,6 +237,28 @@ class FormDocument(models.Model):
         if (today.month, today.day) < (birthdate.month, birthdate.day):
             age -= 1
         return to_thai_digits(str(age))
+
+    def _join_party_names(self, partners):
+        """Join partner names: 'นาย ก, นาย ข และนาย ค'"""
+        if not partners:
+            return ''
+        names = [p.name for p in partners if p.name]
+        if len(names) <= 1:
+            return names[0] if names else ''
+        return ', '.join(names[:-1]) + ' และ' + names[-1]
+
+    def _join_party_details(self, partners):
+        """Join partner names with addresses for multi-party forms."""
+        if not partners:
+            return ''
+        parts = []
+        for i, p in enumerate(partners, 1):
+            detail = p.name or ''
+            addr = self._format_address(p)
+            if addr:
+                detail += f' {addr}'
+            parts.append(f'{to_thai_digits(str(i))}. {detail}')
+        return '\n'.join(parts)
 
     def _format_address(self, partner):
         """Format partner address as single line"""

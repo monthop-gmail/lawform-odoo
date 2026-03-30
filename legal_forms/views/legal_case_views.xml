@@ -29,7 +29,7 @@
                             <field name="black_case_no"/>
                             <field name="red_case_no"/>
                         </group>
-                        <group string="คู่ความ">
+                        <group string="คู่ความหลัก">
                             <field name="plaintiff_id"/>
                             <field name="defendant_id"/>
                             <field name="lawyer_id"/>
@@ -50,6 +50,16 @@
                     <notebook>
                         <page string="รายละเอียด">
                             <field name="description"/>
+                        </page>
+                        <page string="คู่ความทั้งหมด">
+                            <group>
+                                <group string="โจทก์ / ผู้ร้อง">
+                                    <field name="plaintiff_ids" widget="many2many_tags"/>
+                                </group>
+                                <group string="จำเลย / ผู้คัดค้าน">
+                                    <field name="defendant_ids" widget="many2many_tags"/>
+                                </group>
+                            </group>
                         </page>
                         <page string="เอกสาร">
                             <field name="document_ids">
