@@ -32,13 +32,23 @@ class LegalCase(models.Model):
         ('closed', 'ปิดคดี'),
     ], string='สถานะ', default='draft', tracking=True)
 
-    # คู่ความ
+    # คู่ความหลัก (ใช้ใน placeholder)
     plaintiff_id = fields.Many2one(
         'res.partner', string='โจทก์', tracking=True)
     defendant_id = fields.Many2one(
         'res.partner', string='จำเลย', tracking=True)
     lawyer_id = fields.Many2one(
         'res.partner', string='ทนายความ', tracking=True)
+
+    # คู่ความเพิ่มเติม (หลายคน)
+    plaintiff_ids = fields.Many2many(
+        'res.partner', 'legal_case_plaintiff_rel',
+        'case_id', 'partner_id',
+        string='โจทก์ทั้งหมด')
+    defendant_ids = fields.Many2many(
+        'res.partner', 'legal_case_defendant_rel',
+        'case_id', 'partner_id',
+        string='จำเลยทั้งหมด')
 
     # ศาล
     court_name = fields.Char(string='ศาล')

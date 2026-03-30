@@ -44,7 +44,7 @@ legal_forms/
 
 - **Syntax**: `%(field_name)s` in template HTML
 - **Engine**: `FormDocument._apply_merge_fields()` — simple string replace
-- **Currently supports 41 placeholders** (see form_document.py)
+- **Currently supports 49 placeholders** (see form_document.py)
 - **IMPORTANT**: `body_html` fields use `sanitize=False` — Odoo's HTML sanitizer strips `%(...)s` patterns
 
 ### Placeholder naming convention
@@ -60,11 +60,18 @@ legal_forms/
 %(role_occupation)s         — occupation
 %(role_age)s                — computed age (Thai digits)
 %(role_birthdate)s          — birthdate (Thai long format)
+%(role_fax)s                — fax number
+%(role_birthdate)s          — birthdate (Thai long format)
 %(lawyer_license_no)s       — lawyer license number
 %(case_category)s           — case category text
 %(charge)s                  — charge/offense
 %(claim_amount)s            — amount (formatted number)
 %(claim_amount_text)s       — amount in Thai words
+%(judgment_date)s           — judgment date (Thai long format)
+%(judgment_read_date)s      — judgment read date
+%(bail_amount)s             — bail amount (formatted)
+%(bail_amount_text)s        — bail amount in Thai words
+%(written_location)s        — document written location
 %(date_long)s               — Thai date long format
 %(date_short)s              — Thai date short format
 %(thai_year)s               — Buddhist era year
@@ -72,11 +79,12 @@ legal_forms/
 
 ## Form Template Status
 
-**13 of 92 forms** have placeholders. See `FORM_TRACKING.md` for full list.
+**20 of 92 forms** have placeholders. See `FORM_TRACKING.md` for full list.
 
 Forms with placeholders (lawyer-facing, commonly used):
 - แบบ ๑ มอบอำนาจ, แบบ ๔ คำฟ้อง, แบบ ๕ ท้ายฟ้องแพ่ง, แบบ ๖ ท้ายฟ้องอาญา
 - แบบ ๗ คำร้อง, แบบ ๙ ใบแต่งทนาย, แบบ ๑๐ มอบฉันทะ, แบบ ๑๑ คำให้การจำเลย
+- แบบ ๓๒-๓๙ อุทธรณ์/ฎีกา ทั้งชุด
 - แบบ ๑๕ บัญชีพยาน, แบบ ๒๙ ประนีประนอม, แบบ ๓๒ อุทธรณ์
 - แบบ ๕๗ ขอปล่อยชั่วคราว, แบบ ๕๘ สัญญาประกัน
 
