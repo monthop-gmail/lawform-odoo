@@ -44,7 +44,7 @@ legal_forms/
 
 - **Syntax**: `%(field_name)s` in template HTML
 - **Engine**: `FormDocument._apply_merge_fields()` — simple string replace
-- **Currently supports 49 placeholders** (see form_document.py)
+- **Currently supports 84 placeholders** (see form_document.py)
 - **IMPORTANT**: `body_html` fields use `sanitize=False` — Odoo's HTML sanitizer strips `%(...)s` patterns
 
 ### Placeholder naming convention
@@ -79,16 +79,11 @@ legal_forms/
 
 ## Form Template Status
 
-**20 of 92 forms** have placeholders. See `FORM_TRACKING.md` for full list.
+**90 of 92 forms** have placeholders. See `FORM_TRACKING.md` for full list.
 
-Forms with placeholders (lawyer-facing, commonly used):
-- แบบ ๑ มอบอำนาจ, แบบ ๔ คำฟ้อง, แบบ ๕ ท้ายฟ้องแพ่ง, แบบ ๖ ท้ายฟ้องอาญา
-- แบบ ๗ คำร้อง, แบบ ๙ ใบแต่งทนาย, แบบ ๑๐ มอบฉันทะ, แบบ ๑๑ คำให้การจำเลย
-- แบบ ๓๒-๓๙ อุทธรณ์/ฎีกา ทั้งชุด
-- แบบ ๑๕ บัญชีพยาน, แบบ ๒๙ ประนีประนอม, แบบ ๓๒ อุทธรณ์
-- แบบ ๕๗ ขอปล่อยชั่วคราว, แบบ ๕๘ สัญญาประกัน
-
-Remaining 79 forms are mostly court-internal (summons, warrants, receipts) — still have `...........` dots.
+- **20 lawyer-facing forms**: full placeholders (party details, addresses, amounts, etc.)
+- **70 court/general forms**: header placeholders (case numbers, court, date, parties)
+- **2 forms without placeholders**: แบบ ๔๐ ก. (blank paper) and แบบ ๗๖ (back cover)
 
 ## Critical Rules
 

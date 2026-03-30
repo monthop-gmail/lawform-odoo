@@ -200,6 +200,28 @@ class FormDocument(models.Model):
             # --- ข้อมูลบุคคล: โจทก์/จำเลย (เพิ่มเติม) ---
             '%(plaintiff_fax)s': p.fax or '',
             '%(defendant_fax)s': d.fax or '',
+            # --- เลขบัตรประชาชน format X-XXXX-XXXXX-XX-X ---
+            '%(plaintiff_id_formatted)s': self._format_thai_id(p.vat),
+            '%(defendant_id_formatted)s': self._format_thai_id(d.vat),
+            '%(lawyer_id_formatted)s': self._format_thai_id(l.vat),
+            '%(agent_id_formatted)s': self._format_thai_id(self.agent_id.vat),
+            '%(guarantor_id_formatted)s': self._format_thai_id(self.guarantor_id.vat),
+            # --- ที่อยู่แยก field ---
+            '%(plaintiff_street)s': p.street or '',
+            '%(plaintiff_street2)s': p.street2 or '',
+            '%(plaintiff_city)s': p.city or '',
+            '%(plaintiff_state)s': p.state_id.name if p.state_id else '',
+            '%(plaintiff_zip)s': p.zip or '',
+            '%(defendant_street)s': d.street or '',
+            '%(defendant_street2)s': d.street2 or '',
+            '%(defendant_city)s': d.city or '',
+            '%(defendant_state)s': d.state_id.name if d.state_id else '',
+            '%(defendant_zip)s': d.zip or '',
+            '%(lawyer_street)s': l.street or '',
+            '%(lawyer_street2)s': l.street2 or '',
+            '%(lawyer_city)s': l.city or '',
+            '%(lawyer_state)s': l.state_id.name if l.state_id else '',
+            '%(lawyer_zip)s': l.zip or '',
             # --- คู่ความหลายคน (join ชื่อด้วย ", ") ---
             '%(plaintiffs)s': self._join_party_names(case.plaintiff_ids) if case else '',
             '%(defendants)s': self._join_party_names(case.defendant_ids) if case else '',
@@ -227,6 +249,15 @@ class FormDocument(models.Model):
         for key, value in replacements.items():
             html = html.replace(key, str(value))
         return html
+
+    def _format_thai_id(self, id_no):
+        """Format Thai national ID: 1234567890123 → 1-2345-67890-12-3"""
+        if not id_no:
+            return ''
+        digits = ''.join(c for c in id_no if c.isdigit())
+        if len(digits) != 13:
+            return id_no  # return as-is if not 13 digits
+        return f'{digits[0]}-{digits[1:5]}-{digits[5:10]}-{digits[10:12]}-{digits[12]}'
 
     def _compute_age(self, birthdate):
         """คำนวณอายุจากวันเกิด"""
