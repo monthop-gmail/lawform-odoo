@@ -148,13 +148,13 @@
                         domain="[('state', '=', 'draft')]"/>
                 <filter string="ยืนยัน" name="confirmed"
                         domain="[('state', '=', 'confirmed')]"/>
-                <group expand="0" string="จัดกลุ่ม">
+                <group>
                     <filter string="คดี" name="group_case"
-                            context="{'group_by': 'case_id'}"/>
+                            domain="[]" context="{'group_by': 'case_id'}"/>
                     <filter string="แบบฟอร์ม" name="group_template"
-                            context="{'group_by': 'template_id'}"/>
+                            domain="[]" context="{'group_by': 'template_id'}"/>
                     <filter string="สถานะ" name="group_state"
-                            context="{'group_by': 'state'}"/>
+                            domain="[]" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
