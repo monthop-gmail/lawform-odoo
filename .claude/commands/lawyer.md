@@ -102,12 +102,12 @@ odoo_create → legal.case
   - defendant_ids: [[6, 0, [defendant_id]]]
 ```
 
-**3.3 สร้างเอกสาร** (ระบบ auto-fill + merge fields อัตโนมัติ)
+**3.3 สร้างเอกสาร** (placeholders ยังคงอยู่ — ยังไม่ merge)
 ```
 # ค้นหา template
 odoo_search_read → legal.form.template (code = "แบบ ๔")
 
-# สร้างเอกสาร — placeholders จะถูกแทนที่ด้วยข้อมูลคดีอัตโนมัติ
+# สร้างเอกสาร — body_html จะมี %(placeholder)s อยู่ ยังไม่เติมข้อมูล
 odoo_create → legal.form.document
   - name, template_id, case_id
   - (ดู field พิเศษด้านล่าง)
@@ -185,6 +185,22 @@ odoo_write → legal.form.document [doc_id]
 odoo_create → legal.witness.item
   - document_id, sequence, witness_type (document/person/material), name, facts_to_prove
 ```
+
+**3.6 เติมข้อมูลลงฟอร์ม** (merge placeholders กับข้อมูลจริง)
+
+หลังจากสร้างเอกสาร + ร่างเนื้อหาเสร็จ ต้องเรียก action นี้กับทุกเอกสาร:
+```
+odoo_execute → legal.form.document
+  method: "action_apply_merge_fields"
+  args: [[doc_id_1, doc_id_2, doc_id_3, ...]]
+```
+
+ขั้นตอนนี้จะ:
+- อ่าน template ต้นฉบับใหม่
+- แทน %(placeholder)s ด้วยข้อมูลจริงจาก fields
+- เขียนกลับเข้า body_html
+
+**สำคัญ**: กดซ้ำได้ — ถ้ามนุษย์แก้ข้อมูลใน Odoo UI แล้วกด "เติมข้อมูลลงฟอร์ม" อีกครั้ง จะ re-render ใหม่
 
 ### 4. แสดงผลลัพธ์
 

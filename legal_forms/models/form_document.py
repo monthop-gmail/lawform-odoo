@@ -96,7 +96,7 @@ class FormDocument(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        """Auto-fill case data + template body on create"""
+        """Auto-fill case data on create (but don't merge body yet)"""
         for vals in vals_list:
             # Fill from case
             if vals.get('case_id') and not vals.get('plaintiff_id'):
@@ -107,19 +107,14 @@ class FormDocument(models.Model):
                 vals.setdefault('court_name', case.court_name)
                 vals.setdefault('black_case_no', case.black_case_no)
                 vals.setdefault('red_case_no', case.red_case_no)
-            # Fill body from template
+            # Fill body from template (keep placeholders — don't merge yet)
             if vals.get('template_id') and not vals.get('body_html'):
                 tmpl = self.env['legal.form.template'].browse(vals['template_id'])
                 vals['body_html'] = tmpl.body_html
-        records = super().create(vals_list)
-        # Apply mail merge on body_html
-        for rec in records:
-            if rec.body_html and rec.case_id:
-                rec.body_html = rec._apply_merge_fields(rec.body_html)
-        return records
+        return super().create(vals_list)
 
     def write(self, vals):
-        """Re-apply merge fields when case changes"""
+        """Sync case data when case changes"""
         res = super().write(vals)
         if 'case_id' in vals:
             for rec in self:
@@ -130,9 +125,18 @@ class FormDocument(models.Model):
                     rec.court_name = rec.case_id.court_name
                     rec.black_case_no = rec.case_id.black_case_no
                     rec.red_case_no = rec.case_id.red_case_no
-                    if rec.body_html:
-                        rec.body_html = rec._apply_merge_fields(rec.body_html)
         return res
+
+    def action_apply_merge_fields(self):
+        """Re-read template + apply merge fields with current data.
+
+        Called by user after reviewing/editing data fields.
+        Can be called multiple times — always re-reads from template.
+        """
+        for rec in self:
+            if rec.template_id and rec.template_id.body_html:
+                rec.body_html = rec._apply_merge_fields(rec.template_id.body_html)
+        return True
 
     def _apply_merge_fields(self, html):
         """Replace merge placeholders in body_html with actual data.

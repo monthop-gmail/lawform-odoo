@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_apply_merge_fields"
+                            string="เติมข้อมูลลงฟอร์ม"
+                            type="object" class="btn-secondary"
+                            invisible="state != 'draft'"
+                            help="อ่าน template ใหม่ แล้วเติมข้อมูลจาก fields ด้านบน (กดซ้ำได้)"/>
                     <button name="action_confirm" string="ยืนยัน"
                             type="object" class="btn-primary"
                             invisible="state != 'draft'"/>
