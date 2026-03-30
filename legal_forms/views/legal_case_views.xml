@@ -24,6 +24,7 @@
                         <group string="ข้อมูลคดี">
                             <field name="name"/>
                             <field name="case_type"/>
+                            <field name="case_category"/>
                             <field name="court_name"/>
                             <field name="black_case_no"/>
                             <field name="red_case_no"/>
@@ -35,9 +36,15 @@
                         </group>
                     </group>
                     <group>
+                        <group string="รายละเอียดคดี">
+                            <field name="charge"/>
+                            <field name="claim_amount"/>
+                        </group>
                         <group string="วันที่สำคัญ">
                             <field name="date_filed"/>
                             <field name="date_hearing"/>
+                            <field name="judgment_date"/>
+                            <field name="judgment_read_date"/>
                         </group>
                     </group>
                     <notebook>

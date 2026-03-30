@@ -1,4 +1,5 @@
 from . import legal_case
+from . import res_partner
 from . import form_template
 from . import form_document
 from . import continuous_text

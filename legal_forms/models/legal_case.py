@@ -45,10 +45,23 @@ class LegalCase(models.Model):
     black_case_no = fields.Char(string='เลขคดีดำ')
     red_case_no = fields.Char(string='เลขคดีแดง')
 
-    # รายละเอียด
+    # รายละเอียดคดี
+    case_category = fields.Char(
+        string='ประเภทความ',
+        help='เช่น แพ่ง, อาญา, ผู้บริโภค — ใช้แสดงในช่อง "ความ ..." ของฟอร์ม')
+    charge = fields.Char(
+        string='ข้อหา/ฐานความผิด',
+        help='เช่น ผิดสัญญากู้ยืม, ลักทรัพย์')
+    claim_amount = fields.Float(
+        string='จำนวนทุนทรัพย์',
+        help='จำนวนเงินที่เรียกร้อง (บาท)')
     description = fields.Html(string='รายละเอียดคดี')
+
+    # วันที่สำคัญ
     date_filed = fields.Date(string='วันที่ยื่นฟ้อง')
     date_hearing = fields.Date(string='วันนัดพิจารณา')
+    judgment_date = fields.Date(string='วันพิพากษา')
+    judgment_read_date = fields.Date(string='วันอ่านคำพิพากษา')
 
     # เอกสาร
     document_ids = fields.One2many(
