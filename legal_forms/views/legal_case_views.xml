@@ -101,11 +101,11 @@
                         domain="[('case_type', '=', 'criminal')]"/>
                 <group>
                     <filter string="ประเภทคดี" name="group_type"
-                            context="{'group_by': 'case_type'}"/>
+                            domain="[]" context="{'group_by': 'case_type'}"/>
                     <filter string="สถานะ" name="group_state"
-                            context="{'group_by': 'state'}"/>
+                            domain="[]" context="{'group_by': 'state'}"/>
                     <filter string="ศาล" name="group_court"
-                            context="{'group_by': 'court_name'}"/>
+                            domain="[]" context="{'group_by': 'court_name'}"/>
                 </group>
             </search>
         </field>

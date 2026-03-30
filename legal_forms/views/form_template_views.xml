@@ -74,9 +74,9 @@
                 <field name="category_id"/>
                 <group>
                     <filter string="หมวด" name="group_category"
-                            context="{'group_by': 'category_id'}"/>
+                            domain="[]" context="{'group_by': 'category_id'}"/>
                     <filter string="ประเภทคดี" name="group_type"
-                            context="{'group_by': 'case_type'}"/>
+                            domain="[]" context="{'group_by': 'case_type'}"/>
                 </group>
             </search>
         </field>
