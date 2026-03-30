@@ -5,7 +5,7 @@
 
 ## Placeholder Status
 
-**90 / 92 ฟอร์ม** มี merge field placeholders แล้ว (49 unique placeholders, version 19.0.1.3.0)
+**90 / 92 ฟอร์ม** มี merge field placeholders แล้ว (82 placeholders defined, 53 used in templates, version 19.0.1.3.0)
 
 ### ฟอร์มทนาย (20 ฟอร์ม — placeholder เต็มรูปแบบ)
 
@@ -259,8 +259,8 @@
 
 | รายการ | จำนวน |
 |--------|-------|
-| **แบบฟอร์มทั้งหมดใน module** | **93** |
-| อ้างอิงจาก .doc | 92 |
+| **แบบฟอร์มทั้งหมดใน module** | **92** |
+| อ้างอิงจาก .doc | 91 |
 | อ้างอิงจาก hlp (LawForm เดิม) | 1 |
 | ไฟล์ .doc ทั้งหมด | 96 |
 | ไฟล์ .doc ที่ไม่ได้ทำ (สารบัญ/ซ้ำ/เปล่า) | 5 |

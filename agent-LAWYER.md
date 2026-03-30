@@ -115,7 +115,7 @@ odoo_search_read:
   fields: ["id"]
   limit: 1
 
-# สร้างเอกสาร — ระบบจะ auto-fill จากคดีและ apply merge fields อัตโนมัติ
+# สร้างเอกสาร — body_html จะมี %(placeholder)s อยู่ ต้องกด merge ทีหลัง
 odoo_create:
   model: legal.form.document
   values:

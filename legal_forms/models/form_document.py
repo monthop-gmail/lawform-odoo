@@ -211,7 +211,7 @@ class FormDocument(models.Model):
 
     @api.onchange('case_id')
     def _onchange_case_id(self):
-        """ดึงข้อมูลจากคดีมาเติมอัตโนมัติ (UI)"""
+        """ดึงข้อมูลจากคดีมาเติม fields อัตโนมัติ (UI) — ไม่ merge body_html"""
         if self.case_id:
             self.plaintiff_id = self.case_id.plaintiff_id
             self.defendant_id = self.case_id.defendant_id
@@ -219,8 +219,6 @@ class FormDocument(models.Model):
             self.court_name = self.case_id.court_name
             self.black_case_no = self.case_id.black_case_no
             self.red_case_no = self.case_id.red_case_no
-            if self.body_html:
-                self.body_html = self._apply_merge_fields(self.body_html)
 
     @api.depends('witness_item_ids')
     def _compute_witness_count(self):

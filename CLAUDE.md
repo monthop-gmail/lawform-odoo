@@ -55,7 +55,7 @@ agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นต
 
 - **Syntax**: `%(field_name)s` in template HTML
 - **Engine**: `FormDocument._apply_merge_fields()` — simple string replace
-- **Currently supports 85 placeholders** (53 used in templates, 32 reserved)
+- **Currently supports 82 placeholders** (53 used in templates, 29 reserved)
 - **Engine refactored**: `_build_replacements_dict()` (single source) + `_apply_merge_fields()` (applies to HTML)
 - **2-step merge**: create() keeps placeholders → user reviews data → clicks "เติมข้อมูลลงฟอร์ม"
 - **Placeholder preview tab**: shows all values with ✓/— status before merging
@@ -75,7 +75,11 @@ agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นต
 %(role_age)s                — computed age (Thai digits)
 %(role_birthdate)s          — birthdate (Thai long format)
 %(role_fax)s                — fax number
-%(role_birthdate)s          — birthdate (Thai long format)
+%(role_id_formatted)s       — national ID formatted (X-XXXX-XXXXX-XX-X)
+%(role_street)s             — street address component
+%(role_city)s               — city/district
+%(role_state)s              — province
+%(role_zip)s                — postal code
 %(lawyer_license_no)s       — lawyer license number
 %(case_category)s           — case category text
 %(charge)s                  — charge/offense
@@ -112,7 +116,7 @@ agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นต
 
 ### DON'T
 - Don't use `expand="0"` or `string=` on `<group>` in search views (removed in Odoo 19)
-- Don't add `domain="[]"` is **required** on group-by filters in search views (Odoo 19)
+- Don't omit `domain` attribute on group-by filters — `domain="[]"` is **required** in search views (Odoo 19)
 - Don't forget to add new model files to `models/__init__.py`
 - Don't forget to add new view files to `__manifest__.py`
 - Don't use Odoo default config (`/etc/odoo/odoo.conf`) — always use `/workspace/.devcontainer/odoo.conf`
