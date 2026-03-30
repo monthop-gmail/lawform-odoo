@@ -1,6 +1,6 @@
 {
     'name': 'Legal Forms (แบบฟอร์มศาล)',
-    'version': '19.0.1.2.0',
+    'version': '19.0.1.3.0',
     'category': 'Services/Legal',
     'summary': 'แบบฟอร์มศาลและเอกสารทางกฎหมาย',
     'description': """
