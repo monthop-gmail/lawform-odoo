@@ -110,7 +110,39 @@ odoo_search_read → legal.form.template (code = "แบบ ๔")
 # สร้างเอกสาร — placeholders จะถูกแทนที่ด้วยข้อมูลคดีอัตโนมัติ
 odoo_create → legal.form.document
   - name, template_id, case_id
+  - (ดู field พิเศษด้านล่าง)
 ```
+
+**สำคัญ: field พิเศษที่ต้อง set ตอนสร้างเอกสาร (ไม่ใช่ auto-fill จากคดี)**
+
+| ฟอร์ม | field ที่ต้อง set เพิ่ม | คำอธิบาย |
+|-------|----------------------|---------|
+| แบบ ๑ มอบอำนาจ | `agent_id`, `written_location` | ผู้รับมอบอำนาจ (ปกติคือทนาย), สถานที่เขียน |
+| แบบ ๑๐ มอบฉันทะ | `agent_id` | ผู้รับมอบฉันทะ |
+| แบบ ๕๗ ขอปล่อยชั่วคราว | `guarantor_id`, `bail_amount` | ผู้ประกัน + วงเงิน |
+| แบบ ๕๘ สัญญาประกัน | `guarantor_id`, `bail_amount` | ผู้ประกัน + วงเงิน |
+| แบบ ๖๐ สัญญาประกัน ม.46 | `guarantor_id`, `bail_amount` | ผู้ประกัน + วงเงิน |
+
+ตัวอย่าง:
+```
+# แบบ ๑ — ต้องระบุ agent_id (ทนาย) + written_location
+odoo_create → legal.form.document
+  - name: "หนังสือมอบอำนาจ - คดี/2569"
+  - template_id: <id ของ แบบ ๑>
+  - case_id: <case_id>
+  - agent_id: <lawyer_id>           ← สำคัญ!
+  - written_location: "กรุงเทพมหานคร"  ← สำคัญ!
+
+# แบบ ๕๗/๕๘ — ต้องระบุ guarantor_id + bail_amount
+odoo_create → legal.form.document
+  - name: "คำร้องขอปล่อยชั่วคราว"
+  - template_id: <id ของ แบบ ๕๗>
+  - case_id: <case_id>
+  - guarantor_id: <partner_id>     ← สำคัญ!
+  - bail_amount: 500000            ← สำคัญ!
+```
+
+**ฟอร์มอื่นทั้งหมด**: ใส่แค่ `name`, `template_id`, `case_id` ก็พอ — ระบบ auto-fill ให้หมด
 
 **3.4 ร่างเนื้อหาคำฟ้อง** (อัปเดต body_html)
 ```
