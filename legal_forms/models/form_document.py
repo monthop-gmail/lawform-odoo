@@ -64,7 +64,7 @@ class FormDocument(models.Model):
         help='เลือกเครื่องพิมพ์เพื่อปรับ offset ตำแหน่ง')
 
     # เนื้อหาที่กรอก
-    body_html = fields.Html(string='เนื้อหาเอกสาร')
+    body_html = fields.Html(string='เนื้อหาเอกสาร', sanitize=False)
     notes = fields.Text(string='หมายเหตุ')
 
     # ข้อความต่อเนื่อง (40 ก.)

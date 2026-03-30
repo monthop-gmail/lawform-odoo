@@ -44,6 +44,7 @@ class FormTemplate(models.Model):
     description = fields.Text(string='คำอธิบาย')
     body_html = fields.Html(
         string='เนื้อหาแบบฟอร์ม',
+        sanitize=False,
         help='HTML template ของแบบฟอร์ม ใช้ placeholder เช่น '
              '%(plaintiff)s, %(defendant)s, %(court)s')
     has_continuous_text = fields.Boolean(
