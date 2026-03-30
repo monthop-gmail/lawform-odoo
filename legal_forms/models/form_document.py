@@ -1,4 +1,8 @@
+from datetime import date
+
 from odoo import api, fields, models
+
+from .thai_utils import to_thai_date, to_thai_digits, to_thai_year
 
 
 class FormDocument(models.Model):
@@ -30,6 +34,8 @@ class FormDocument(models.Model):
     court_name = fields.Char(string='ศาล')
     black_case_no = fields.Char(string='เลขคดีดำ')
     red_case_no = fields.Char(string='เลขคดีแดง')
+    document_date = fields.Date(
+        string='วันที่เอกสาร', default=fields.Date.today)
 
     # ตัวเลือกการพิมพ์
     print_mode = fields.Selection([
@@ -121,24 +127,51 @@ class FormDocument(models.Model):
         return res
 
     def _apply_merge_fields(self, html):
-        """Replace merge placeholders in body_html with actual data"""
+        """Replace merge placeholders in body_html with actual data.
+
+        Supported placeholders:
+            %(plaintiff)s, %(defendant)s, %(lawyer)s — ชื่อคู่ความ
+            %(court)s — ชื่อศาล
+            %(black_case)s, %(red_case)s — เลขคดี
+            %(plaintiff_address)s, %(defendant_address)s — ที่อยู่
+            %(plaintiff_phone)s, %(lawyer_phone)s — โทรศัพท์
+            %(plaintiff_id_no)s, %(defendant_id_no)s — เลขประจำตัว
+            %(date_long)s — วันที่ ๑๕ เดือน มีนาคม พุทธศักราช ๒๕๖๙
+            %(date_short)s — ๑๕ มี.ค. ๒๕๖๙
+            %(date_full)s — วันจันทร์ที่ ๑๕ เดือน มีนาคม พุทธศักราช ๒๕๖๙
+            %(thai_year)s — ๒๕๖๙
+            %(black_case_thai)s, %(red_case_thai)s — เลขคดี (ตัวเลขไทย)
+        """
         if not html:
             return html
+        doc_date = self.document_date or date.today()
         replacements = {
+            # คู่ความ
             '%(plaintiff)s': self.plaintiff_id.name or '',
             '%(defendant)s': self.defendant_id.name or '',
             '%(lawyer)s': self.lawyer_id.name or '',
+            # ศาล / เลขคดี
             '%(court)s': self.court_name or '',
             '%(black_case)s': self.black_case_no or '',
             '%(red_case)s': self.red_case_no or '',
+            '%(black_case_thai)s': to_thai_digits(self.black_case_no or ''),
+            '%(red_case_thai)s': to_thai_digits(self.red_case_no or ''),
+            # ที่อยู่
             '%(plaintiff_address)s': self._format_address(self.plaintiff_id),
             '%(defendant_address)s': self._format_address(self.defendant_id),
             '%(lawyer_address)s': self._format_address(self.lawyer_id),
+            # โทรศัพท์
             '%(plaintiff_phone)s': self.plaintiff_id.phone or '',
             '%(defendant_phone)s': self.defendant_id.phone or '',
             '%(lawyer_phone)s': self.lawyer_id.phone or '',
+            # เลขประจำตัว
             '%(plaintiff_id_no)s': self.plaintiff_id.vat or '',
             '%(defendant_id_no)s': self.defendant_id.vat or '',
+            # วันที่ (พุทธศักราช + ตัวเลขไทย)
+            '%(date_long)s': to_thai_date(doc_date, 'long'),
+            '%(date_short)s': to_thai_date(doc_date, 'short'),
+            '%(date_full)s': to_thai_date(doc_date, 'full'),
+            '%(thai_year)s': to_thai_year(doc_date),
         }
         for key, value in replacements.items():
             html = html.replace(key, value)
