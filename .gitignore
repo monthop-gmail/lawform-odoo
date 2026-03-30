@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Odoo
+*.pyc
+filestore/
+
+# Docker volumes (managed by Docker, not git)
+odoo-data/
+postgres-data/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Original form templates (Word docs, not source-controlled)
+forms/
+
+# Legacy Windows software
+software/
+
+# External repos (cloned separately)
+repos/
+
+# Logs
+*.log
+
+# Environment
+.env
