@@ -242,22 +242,22 @@ class FormDocument(models.Model):
     def action_print(self):
         self.write({'state': 'printed'})
         if self.template_id.report_template_id:
-            return self.template_id.report_template_id.report_action(self)
+            return self.template_id.report_template_id.report_action(self, config=False)
         if self.print_mode == 'data_only':
             return self.env.ref(
                 'legal_forms.action_report_form_data_only'
-            ).report_action(self)
+            ).report_action(self, config=False)
         if self.duplex_mode == 'odd':
             return self.env.ref(
                 'legal_forms.action_report_form_odd_pages'
-            ).report_action(self)
+            ).report_action(self, config=False)
         if self.duplex_mode == 'even':
             return self.env.ref(
                 'legal_forms.action_report_form_even_pages'
-            ).report_action(self)
+            ).report_action(self, config=False)
         return self.env.ref(
             'legal_forms.action_report_form_document'
-        ).report_action(self)
+        ).report_action(self, config=False)
 
     def action_draft(self):
         self.write({'state': 'draft'})
