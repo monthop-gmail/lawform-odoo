@@ -137,6 +137,13 @@ Available tools: `odoo_create`, `odoo_search_read`, `odoo_write`, `odoo_delete`,
 - Creates cases + documents + drafts content via MCP tools
 - Tested: civil, criminal, bail, appeal cases
 
+## AI Review (`/review` skill)
+
+- Skill file: `.claude/commands/review.md`
+- Reference: `agent-REVIEW.md`
+- Checks 6 areas: document set, placeholders, content, witnesses, party data, Thai digits
+- Reports findings with fix instructions
+
 ## Testing
 
 ```bash
