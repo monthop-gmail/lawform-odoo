@@ -27,24 +27,38 @@ legal_forms/
   models/
     legal_case.py        — คดีความ (case record)
     form_template.py     — แบบฟอร์ม template (HTML + placeholders)
-    form_document.py     — เอกสาร instance (merged data)
+    form_document.py     — เอกสาร instance (2-step merge)
     res_partner.py       — extend res.partner (race, nationality, etc.)
     continuous_text.py   — ข้อความต่อเนื่อง 40 ก.
     witness_list.py      — บัญชีพยาน
     text_annotation.py   — ข้อความแทรกอิสระ
     printer_config.py    — ตั้งค่าเครื่องพิมพ์
     thai_utils.py        — Thai date/digits/baht text (pure functions)
+  hooks.py               — post_init_hook (reset noupdate on install)
+  tests/
+    test_thai_utils.py   — 29 tests for Thai utils
+    test_merge_fields.py — 10 tests for merge engine
   data/
     form_template_data.xml  — 92 court form templates (noupdate=1)
     form_category_data.xml  — 10 form categories
+  migrations/
+    19.0.1.2.0/          — reset noupdate for template updates
+    19.0.1.3.0/          — reset noupdate for 90/92 placeholders
   views/  reports/  security/
+.claude/commands/
+  lawyer.md              — /lawyer skill (AI ทนายความ)
+.mcp.json                — MCP server config (odoo-mcp-claude)
+agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นตอน, ฟอร์ม, กฎหมาย)
 ```
 
 ## Merge Field System (Placeholder)
 
 - **Syntax**: `%(field_name)s` in template HTML
 - **Engine**: `FormDocument._apply_merge_fields()` — simple string replace
-- **Currently supports 84 placeholders** (see form_document.py)
+- **Currently supports 85 placeholders** (53 used in templates, 32 reserved)
+- **Engine refactored**: `_build_replacements_dict()` (single source) + `_apply_merge_fields()` (applies to HTML)
+- **2-step merge**: create() keeps placeholders → user reviews data → clicks "เติมข้อมูลลงฟอร์ม"
+- **Placeholder preview tab**: shows all values with ✓/— status before merging
 - **IMPORTANT**: `body_html` fields use `sanitize=False` — Odoo's HTML sanitizer strips `%(...)s` patterns
 
 ### Placeholder naming convention
@@ -102,6 +116,22 @@ legal_forms/
 - Don't forget to add new model files to `models/__init__.py`
 - Don't forget to add new view files to `__manifest__.py`
 - Don't use Odoo default config (`/etc/odoo/odoo.conf`) — always use `/workspace/.devcontainer/odoo.conf`
+- Don't use U+0E60-0E69 for Thai digits — correct range is U+0E50-0E59 (use `to_thai_digits()`)
+- Don't auto-merge placeholders on create — use 2-step flow (create → review → apply)
+
+## MCP Server (AI access to Odoo)
+
+MCP server at `http://localhost:8000/mcp/` connects AI agents to Odoo via XML-RPC.
+Config: `.mcp.json` | Server: `/opt/docker-test/odoo-mcp-claude/`
+
+Available tools: `odoo_create`, `odoo_search_read`, `odoo_write`, `odoo_delete`, `odoo_execute`, `odoo_fields_get`, `odoo_version`
+
+## AI Lawyer (`/lawyer` skill)
+
+- Skill file: `.claude/commands/lawyer.md`
+- Reference: `agent-LAWYER.md`
+- Creates cases + documents + drafts content via MCP tools
+- Tested: civil, criminal, bail, appeal cases
 
 ## Testing
 
