@@ -183,7 +183,7 @@ odoo_write → legal.form.document [doc_id]
 **3.5 เพิ่มบัญชีพยาน**
 ```
 odoo_create → legal.witness.item
-  - document_id, sequence, witness_type (document/person/material), name, prove_point
+  - document_id, sequence, witness_type (document/person/material), name, facts_to_prove
 ```
 
 ### 4. แสดงผลลัพธ์

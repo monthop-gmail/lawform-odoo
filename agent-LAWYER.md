@@ -231,7 +231,7 @@ execute('legal.witness.item', 'create', {
     'sequence': 1,
     'witness_type': 'document',  # document, person, material
     'name': 'สำเนาสัญญากู้ยืมเงิน',
-    'prove_point': 'จำเลยกู้ยืมเงินจากโจทก์',
+    'facts_to_prove': 'จำเลยกู้ยืมเงินจากโจทก์',
 })
 ```
 
