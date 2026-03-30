@@ -190,11 +190,23 @@ class FormDocument(models.Model):
             '%(claim_amount_text)s': num_to_thai_text(case.claim_amount) if case and case.claim_amount else '',
             '%(judgment_date)s': to_thai_date(case.judgment_date, 'long') if case and case.judgment_date else '',
             '%(judgment_read_date)s': to_thai_date(case.judgment_read_date, 'long') if case and case.judgment_read_date else '',
+            # --- ข้อมูลบุคคล: ทนาย (เพิ่มเติม) ---
+            '%(lawyer_id_no)s': l.vat or '',
+            '%(lawyer_fax)s': l.fax or '',
+            '%(lawyer_race)s': l.race or '',
+            '%(lawyer_nationality)s': l.nationality or '',
+            '%(lawyer_occupation)s': l.occupation or '',
+            '%(lawyer_age)s': self._compute_age(l.birthdate) if l.birthdate else '',
+            # --- ข้อมูลบุคคล: โจทก์/จำเลย (เพิ่มเติม) ---
+            '%(plaintiff_fax)s': p.fax or '',
+            '%(defendant_fax)s': d.fax or '',
             # --- ข้อมูลเฉพาะเอกสาร ---
             '%(agent)s': self.agent_id.name or '',
             '%(agent_address)s': self._format_address(self.agent_id),
             '%(agent_phone)s': self.agent_id.phone or '',
             '%(agent_id_no)s': self.agent_id.vat or '',
+            '%(agent_email)s': self.agent_id.email or '',
+            '%(agent_age)s': self._compute_age(self.agent_id.birthdate) if self.agent_id.birthdate else '',
             '%(guarantor)s': self.guarantor_id.name or '',
             '%(guarantor_address)s': self._format_address(self.guarantor_id),
             '%(guarantor_id_no)s': self.guarantor_id.vat or '',

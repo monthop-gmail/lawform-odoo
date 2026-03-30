@@ -8,4 +8,5 @@ class ResPartner(models.Model):
     nationality = fields.Char(string='สัญชาติ')
     occupation = fields.Char(string='อาชีพ')
     birthdate = fields.Date(string='วันเกิด')
+    fax = fields.Char(string='โทรสาร')
     lawyer_license_no = fields.Char(string='เลขใบอนุญาตทนายความ')

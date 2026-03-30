@@ -14,7 +14,8 @@
                             <field name="occupation"/>
                             <field name="birthdate"/>
                         </group>
-                        <group string="ทนายความ">
+                        <group string="ทนายความ / ติดต่อ">
+                            <field name="fax"/>
                             <field name="lawyer_license_no"/>
                         </group>
                     </group>
