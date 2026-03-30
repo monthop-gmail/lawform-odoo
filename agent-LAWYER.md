@@ -1,19 +1,33 @@
 # AI Lawyer — คู่มือ AI ทนายความ
 
-คู่มือสำหรับ AI ที่ทำหน้าที่เป็นทนายความ ใช้ระบบ lawform ผ่าน XML-RPC
+คู่มือสำหรับ AI ที่ทำหน้าที่เป็นทนายความ ใช้ระบบ lawform ผ่าน MCP tools
 เพื่อสร้างคดี เลือกฟอร์ม ร่างเนื้อหา และจัดเตรียมเอกสารศาลให้ครบชุด
 
-## การเชื่อมต่อ Odoo
+## การเชื่อมต่อ Odoo — MCP Tools
 
-```python
+ใช้ MCP tools ที่ขึ้นต้นด้วย `odoo_` โดยตรง (ไม่ต้อง docker exec):
+
+| MCP Tool | เทียบกับ XML-RPC |
+|----------|-----------------|
+| `odoo_create` | `models.execute_kw(... 'create', ...)` |
+| `odoo_search_read` | `models.execute_kw(... 'search_read', ...)` |
+| `odoo_search_count` | `models.execute_kw(... 'search_count', ...)` |
+| `odoo_read` | `models.execute_kw(... 'read', ...)` |
+| `odoo_write` | `models.execute_kw(... 'write', ...)` |
+| `odoo_delete` | `models.execute_kw(... 'unlink', ...)` |
+| `odoo_execute` | `models.execute_kw(... method, ...)` |
+| `odoo_fields_get` | `models.execute_kw(... 'fields_get', ...)` |
+
+**Fallback**: ถ้า MCP tools ไม่พร้อมใช้งาน ใช้ `docker exec` แทน:
+```bash
+docker exec lawform-odoo-1 python3 -c "
 import xmlrpc.client
-URL = 'http://localhost:8069'
-DB = 'lawform'
-UID = xmlrpc.client.ServerProxy(f'{URL}/xmlrpc/2/common').authenticate(DB, 'admin', 'admin', {})
-MODELS = xmlrpc.client.ServerProxy(f'{URL}/xmlrpc/2/object')
-
-def execute(model, method, *args, **kwargs):
-    return MODELS.execute_kw(DB, UID, 'admin', model, method, list(args), kwargs)
+url = 'http://localhost:8069'
+db = 'lawform'
+uid = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common').authenticate(db, 'admin', 'admin', {})
+models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
+# ... execute commands ...
+"
 ```
 
 ## ขั้นตอนการทำงาน
@@ -50,73 +64,64 @@ def execute(model, method, *args, **kwargs):
 
 #### 3.1 สร้าง/ค้นหาคู่ความ (res.partner)
 
-```python
+```
 # สร้างโจทก์
-plaintiff_id = execute('res.partner', 'create', {
-    'name': 'นาย สมชาย ใจดี',
-    'street': '123/4 ถ.สุขุมวิท แขวงคลองเตย',
-    'city': 'เขตคลองเตย',
-    'state_id': state_id,  # จังหวัด
-    'zip': '10110',
-    'phone': '081-234-5678',
-    'email': 'somchai@example.com',
-    'vat': '1234567890123',  # เลขบัตรประชาชน
-    'race': 'ไทย',
-    'nationality': 'ไทย',
-    'occupation': 'พนักงานบริษัท',
-    'birthdate': '1990-05-15',
-})
+odoo_create:
+  model: res.partner
+  values:
+    name: "นาย สมชาย ใจดี"
+    street: "123/4 ถ.สุขุมวิท แขวงคลองเตย"
+    city: "เขตคลองเตย"
+    zip: "10110"
+    phone: "081-234-5678"
+    email: "somchai@example.com"
+    vat: "1234567890123"
+    race: "ไทย"
+    nationality: "ไทย"
+    occupation: "พนักงานบริษัท"
+    birthdate: "1990-05-15"
 
-# สร้างจำเลย
-defendant_id = execute('res.partner', 'create', {
-    'name': 'นาย สมศักดิ์ มั่งมี',
-    ...
-})
-
-# สร้างทนายความ
-lawyer_id = execute('res.partner', 'create', {
-    'name': 'นาย วิชัย ยุติธรรม',
-    'lawyer_license_no': 'ท.12345/2560',
-    'phone': '02-123-4567',
-    'fax': '02-123-4568',
-    'email': 'wichai@lawfirm.co.th',
-    ...
-})
+# สร้างจำเลย — odoo_create เช่นเดียวกัน
+# สร้างทนายความ — เพิ่ม lawyer_license_no, fax
 ```
 
 #### 3.2 สร้างคดี (legal.case)
 
-```python
-case_id = execute('legal.case', 'create', {
-    'name': 'ผบ.1234/2569',
-    'case_type': 'civil',
-    'case_category': 'แพ่ง',
-    'court_name': 'ศาลแพ่งกรุงเทพใต้',
-    'plaintiff_id': plaintiff_id,
-    'defendant_id': defendant_id,
-    'lawyer_id': lawyer_id,
-    'charge': 'ผิดสัญญากู้ยืมเงิน',
-    'claim_amount': 500000.00,
-    'date_filed': '2569-03-30',  # วันยื่นฟ้อง (ค.ศ.)
-    'black_case_no': '1234/2569',
-    'plaintiff_ids': [(6, 0, [plaintiff_id])],
-    'defendant_ids': [(6, 0, [defendant_id])],
-})
+```
+odoo_create:
+  model: legal.case
+  values:
+    name: "ผบ.1234/2569"
+    case_type: "civil"
+    case_category: "แพ่ง"
+    court_name: "ศาลแพ่งกรุงเทพใต้"
+    plaintiff_id: <plaintiff_id>
+    defendant_id: <defendant_id>
+    lawyer_id: <lawyer_id>
+    charge: "ผิดสัญญากู้ยืมเงิน"
+    claim_amount: 500000.00
+    black_case_no: "1234/2569"
+    plaintiff_ids: [[6, 0, [<plaintiff_id>]]]
+    defendant_ids: [[6, 0, [<defendant_id>]]]
 ```
 
 #### 3.3 สร้างเอกสาร (legal.form.document)
 
-```python
+```
 # ค้นหา template
-template = execute('legal.form.template', 'search_read',
-    [('code', '=', 'แบบ ๔')], fields=['id'], limit=1)
+odoo_search_read:
+  model: legal.form.template
+  domain: [["code", "=", "แบบ ๔"]]
+  fields: ["id"]
+  limit: 1
 
 # สร้างเอกสาร — ระบบจะ auto-fill จากคดีและ apply merge fields อัตโนมัติ
-doc_id = execute('legal.form.document', 'create', {
-    'name': 'คำฟ้อง - ผบ.1234/2569',
-    'template_id': template[0]['id'],
-    'case_id': case_id,
-})
+odoo_create:
+  model: legal.form.document
+  values:
+    name: "คำฟ้อง - ผบ.1234/2569"
+    template_id: <template_id>
+    case_id: <case_id>
 ```
 
 **สำคัญ**: เมื่อระบุ `case_id` ระบบจะ:

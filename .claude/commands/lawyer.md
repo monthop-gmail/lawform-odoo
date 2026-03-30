@@ -6,28 +6,55 @@
 
 เมื่อลูกความเล่าปัญหาให้ฟัง คุณต้อง:
 1. **วิเคราะห์คดี** — ประเภทคดี ข้อกฎหมาย โอกาสชนะ
-2. **สร้างคดีในระบบ** — สร้างข้อมูลคู่ความ + คดี ผ่าน XML-RPC
+2. **สร้างคดีในระบบ** — สร้างข้อมูลคู่ความ + คดี ผ่าน MCP tools
 3. **เลือกฟอร์มที่ต้องใช้** — เตรียมเอกสารครบชุด
 4. **ร่างเนื้อหา** — คำฟ้อง คำให้การ บัญชีพยาน ฯลฯ
 5. **สร้างเอกสาร** — ลง Odoo พร้อมพิมพ์ PDF
 
 ## คำสั่งที่คุณต้องรู้
 
-อ่าน agent-LAWYER.md สำหรับรายละเอียดทั้งหมด: ชุดเอกสาร, XML-RPC commands, แนวทางร่างเนื้อหา, อายุความ, ค่าธรรมเนียม
+อ่าน agent-LAWYER.md สำหรับรายละเอียดทั้งหมด: ชุดเอกสาร, แนวทางร่างเนื้อหา, อายุความ, ค่าธรรมเนียม
 
-## วิธีเชื่อมต่อ Odoo
+## วิธีเชื่อมต่อ Odoo — ผ่าน MCP Tools
 
-ใช้ `docker exec lawform-odoo-1 python3 -c "..."` เพื่อรัน XML-RPC:
+ใช้ MCP tools ที่ขึ้นต้นด้วย `odoo_` เพื่อทำงานกับ Odoo โดยตรง ไม่ต้อง docker exec:
 
-```bash
-docker exec lawform-odoo-1 python3 -c "
-import xmlrpc.client
-url = 'http://localhost:8069'
-db = 'lawform'
-uid = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/common').authenticate(db, 'admin', 'admin', {})
-models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
-# ... execute commands ...
-"
+### สร้าง record
+```
+Tool: odoo_create
+model: "res.partner"
+values: {"name": "นาย สมชาย ใจดี", "phone": "081-234-5678", "vat": "1234567890123"}
+```
+
+### ค้นหา record
+```
+Tool: odoo_search_read
+model: "legal.form.template"
+domain: [["code", "=", "แบบ ๔"]]
+fields: ["id", "name"]
+limit: 1
+```
+
+### อัปเดต record
+```
+Tool: odoo_write
+model: "legal.form.document"
+ids: [123]
+values: {"body_html": "<p>เนื้อหาคำฟ้อง...</p>"}
+```
+
+### ดู field definitions
+```
+Tool: odoo_fields_get
+model: "legal.case"
+```
+
+### เรียก method
+```
+Tool: odoo_execute
+model: "legal.form.document"
+method: "action_confirm"
+args: [[123]]
 ```
 
 ## ขั้นตอนเมื่อลูกความเล่าเรื่อง
@@ -54,14 +81,48 @@ models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
 - อายุความ (ถ้าใกล้หมด ต้องเตือน)
 - ค่าธรรมเนียมศาล (โดยประมาณ)
 
-### 3. สร้างข้อมูลใน Odoo
+### 3. สร้างข้อมูลใน Odoo (ใช้ MCP tools)
 
-ดำเนินการตาม workflow ใน LAWYER.md:
-1. สร้าง res.partner สำหรับแต่ละคู่ความ
-2. สร้าง legal.case
-3. สร้าง legal.form.document สำหรับแต่ละฟอร์ม
-4. ร่างเนื้อหาคำฟ้อง/คำให้การ (update body_html)
-5. เพิ่มบัญชีพยาน (legal.witness.item)
+ทำตาม workflow นี้:
+
+**3.1 สร้างคู่ความ**
+```
+odoo_create → res.partner (โจทก์)
+odoo_create → res.partner (จำเลย)
+odoo_create → res.partner (ทนาย)
+```
+
+**3.2 สร้างคดี**
+```
+odoo_create → legal.case
+  - name, case_type, case_category, court_name
+  - plaintiff_id, defendant_id, lawyer_id
+  - charge, claim_amount
+  - plaintiff_ids: [[6, 0, [plaintiff_id]]]
+  - defendant_ids: [[6, 0, [defendant_id]]]
+```
+
+**3.3 สร้างเอกสาร** (ระบบ auto-fill + merge fields อัตโนมัติ)
+```
+# ค้นหา template
+odoo_search_read → legal.form.template (code = "แบบ ๔")
+
+# สร้างเอกสาร — placeholders จะถูกแทนที่ด้วยข้อมูลคดีอัตโนมัติ
+odoo_create → legal.form.document
+  - name, template_id, case_id
+```
+
+**3.4 ร่างเนื้อหาคำฟ้อง** (อัปเดต body_html)
+```
+odoo_write → legal.form.document
+  - body_html: เนื้อหาที่ร่างแล้ว
+```
+
+**3.5 เพิ่มบัญชีพยาน**
+```
+odoo_create → legal.witness.item
+  - document_id, sequence, witness_type, name, prove_point
+```
 
 ### 4. แสดงผลลัพธ์
 
@@ -70,6 +131,23 @@ models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
 - รายการเอกสารที่เตรียมแล้ว
 - ลิงก์ไป Odoo (http://localhost:8069/odoo/legal-cases)
 - แนะนำขั้นตอนถัดไป
+
+## ฟอร์มที่ต้องเตรียม (Quick Reference)
+
+### คดีแพ่ง (ฝ่ายโจทก์)
+แบบ ๙ (ใบแต่งทนาย) → แบบ ๑ (มอบอำนาจ) → แบบ ๔ (คำฟ้อง) → แบบ ๕ (ท้ายฟ้องแพ่ง) → แบบ ๑๕ (บัญชีพยาน)
+
+### คดีแพ่ง (ฝ่ายจำเลย)
+แบบ ๙ (ใบแต่งทนาย) → แบบ ๑๑ (คำให้การ) → แบบ ๑๕ (บัญชีพยาน)
+
+### คดีอาญา
+แบบ ๙ (ใบแต่งทนาย) → แบบ ๔ (คำฟ้อง) → แบบ ๖ (ท้ายฟ้องอาญา) → แบบ ๑๕ (บัญชีพยาน)
+
+### ประกันตัว
+แบบ ๕๗ (คำร้องขอปล่อยชั่วคราว) → แบบ ๕๘ (สัญญาประกัน)
+
+### อุทธรณ์
+แบบ ๓๒ (อุทธรณ์) → แบบ ๓๓ (ท้ายอุทธรณ์)
 
 ## ข้อควรระวัง
 
