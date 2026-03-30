@@ -80,9 +80,86 @@ class FormDocument(models.Model):
         string='จำนวนข้อความแทรก',
         compute='_compute_annotation_count')
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Auto-fill case data + template body on create"""
+        for vals in vals_list:
+            # Fill from case
+            if vals.get('case_id') and not vals.get('plaintiff_id'):
+                case = self.env['legal.case'].browse(vals['case_id'])
+                vals.setdefault('plaintiff_id', case.plaintiff_id.id)
+                vals.setdefault('defendant_id', case.defendant_id.id)
+                vals.setdefault('lawyer_id', case.lawyer_id.id)
+                vals.setdefault('court_name', case.court_name)
+                vals.setdefault('black_case_no', case.black_case_no)
+                vals.setdefault('red_case_no', case.red_case_no)
+            # Fill body from template
+            if vals.get('template_id') and not vals.get('body_html'):
+                tmpl = self.env['legal.form.template'].browse(vals['template_id'])
+                vals['body_html'] = tmpl.body_html
+        records = super().create(vals_list)
+        # Apply mail merge on body_html
+        for rec in records:
+            if rec.body_html and rec.case_id:
+                rec.body_html = rec._apply_merge_fields(rec.body_html)
+        return records
+
+    def write(self, vals):
+        """Re-apply merge fields when case changes"""
+        res = super().write(vals)
+        if 'case_id' in vals:
+            for rec in self:
+                if rec.case_id:
+                    rec.plaintiff_id = rec.case_id.plaintiff_id
+                    rec.defendant_id = rec.case_id.defendant_id
+                    rec.lawyer_id = rec.case_id.lawyer_id
+                    rec.court_name = rec.case_id.court_name
+                    rec.black_case_no = rec.case_id.black_case_no
+                    rec.red_case_no = rec.case_id.red_case_no
+                    if rec.body_html:
+                        rec.body_html = rec._apply_merge_fields(rec.body_html)
+        return res
+
+    def _apply_merge_fields(self, html):
+        """Replace merge placeholders in body_html with actual data"""
+        if not html:
+            return html
+        replacements = {
+            '%(plaintiff)s': self.plaintiff_id.name or '',
+            '%(defendant)s': self.defendant_id.name or '',
+            '%(lawyer)s': self.lawyer_id.name or '',
+            '%(court)s': self.court_name or '',
+            '%(black_case)s': self.black_case_no or '',
+            '%(red_case)s': self.red_case_no or '',
+            '%(plaintiff_address)s': self._format_address(self.plaintiff_id),
+            '%(defendant_address)s': self._format_address(self.defendant_id),
+            '%(lawyer_address)s': self._format_address(self.lawyer_id),
+            '%(plaintiff_phone)s': self.plaintiff_id.phone or '',
+            '%(defendant_phone)s': self.defendant_id.phone or '',
+            '%(lawyer_phone)s': self.lawyer_id.phone or '',
+            '%(plaintiff_id_no)s': self.plaintiff_id.vat or '',
+            '%(defendant_id_no)s': self.defendant_id.vat or '',
+        }
+        for key, value in replacements.items():
+            html = html.replace(key, value)
+        return html
+
+    def _format_address(self, partner):
+        """Format partner address as single line"""
+        if not partner:
+            return ''
+        parts = [
+            partner.street or '',
+            partner.street2 or '',
+            partner.city or '',
+            partner.state_id.name if partner.state_id else '',
+            partner.zip or '',
+        ]
+        return ' '.join(p for p in parts if p)
+
     @api.onchange('case_id')
     def _onchange_case_id(self):
-        """ดึงข้อมูลจากคดีมาเติมอัตโนมัติ"""
+        """ดึงข้อมูลจากคดีมาเติมอัตโนมัติ (UI)"""
         if self.case_id:
             self.plaintiff_id = self.case_id.plaintiff_id
             self.defendant_id = self.case_id.defendant_id
@@ -90,6 +167,8 @@ class FormDocument(models.Model):
             self.court_name = self.case_id.court_name
             self.black_case_no = self.case_id.black_case_no
             self.red_case_no = self.case_id.red_case_no
+            if self.body_html:
+                self.body_html = self._apply_merge_fields(self.body_html)
 
     @api.depends('witness_item_ids')
     def _compute_witness_count(self):
