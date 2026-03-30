@@ -233,6 +233,7 @@ class FormDocument(models.Model):
             '%(agent_phone)s': self.agent_id.phone or '',
             '%(agent_id_no)s': self.agent_id.vat or '',
             '%(agent_email)s': self.agent_id.email or '',
+            '%(agent_fax)s': self.agent_id.fax or '',
             '%(agent_age)s': self._compute_age(self.agent_id.birthdate) if self.agent_id.birthdate else '',
             '%(guarantor)s': self.guarantor_id.name or '',
             '%(guarantor_address)s': self._format_address(self.guarantor_id),
