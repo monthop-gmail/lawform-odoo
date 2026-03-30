@@ -112,6 +112,12 @@
                                 </list>
                             </field>
                         </page>
+                        <page string="ตรวจ Placeholder">
+                            <div class="alert alert-info" role="alert">
+                                ตรวจสอบค่าที่จะถูกเติมลงฟอร์ม — แก้ไขข้อมูลด้านบน แล้วกด "เติมข้อมูลลงฟอร์ม"
+                            </div>
+                            <field name="placeholder_preview" readonly="1"/>
+                        </page>
                         <page string="หมายเหตุ">
                             <field name="notes"/>
                         </page>

@@ -94,6 +94,12 @@ class FormDocument(models.Model):
         string='จำนวนข้อความแทรก',
         compute='_compute_annotation_count')
 
+    # Preview placeholder values
+    placeholder_preview = fields.Html(
+        string='ตรวจสอบข้อมูล Placeholder',
+        compute='_compute_placeholder_preview',
+        sanitize=False)
+
     @api.model_create_multi
     def create(self, vals_list):
         """Auto-fill case data on create (but don't merge body yet)"""
@@ -139,121 +145,15 @@ class FormDocument(models.Model):
         return True
 
     def _apply_merge_fields(self, html):
-        """Replace merge placeholders in body_html with actual data.
-
-        Supported placeholders — see PLACEHOLDER_REFERENCE.md for full list.
-        """
+        """Replace merge placeholders in body_html with actual data."""
         if not html:
             return html
-        doc_date = self.document_date or date.today()
-        p = self.plaintiff_id
-        d = self.defendant_id
-        l = self.lawyer_id
-        case = self.case_id
-
-        replacements = {
-            # --- คู่ความ ---
-            '%(plaintiff)s': p.name or '',
-            '%(defendant)s': d.name or '',
-            '%(lawyer)s': l.name or '',
-            # --- ข้อมูลบุคคล: โจทก์ ---
-            '%(plaintiff_address)s': self._format_address(p),
-            '%(plaintiff_phone)s': p.phone or '',
-            '%(plaintiff_id_no)s': p.vat or '',
-            '%(plaintiff_email)s': p.email or '',
-            '%(plaintiff_race)s': p.race or '',
-            '%(plaintiff_nationality)s': p.nationality or '',
-            '%(plaintiff_occupation)s': p.occupation or '',
-            '%(plaintiff_age)s': self._compute_age(p.birthdate) if p.birthdate else '',
-            '%(plaintiff_birthdate)s': to_thai_date(p.birthdate, 'long') if p.birthdate else '',
-            # --- ข้อมูลบุคคล: จำเลย ---
-            '%(defendant_address)s': self._format_address(d),
-            '%(defendant_phone)s': d.phone or '',
-            '%(defendant_id_no)s': d.vat or '',
-            '%(defendant_email)s': d.email or '',
-            '%(defendant_race)s': d.race or '',
-            '%(defendant_nationality)s': d.nationality or '',
-            '%(defendant_occupation)s': d.occupation or '',
-            '%(defendant_age)s': self._compute_age(d.birthdate) if d.birthdate else '',
-            '%(defendant_birthdate)s': to_thai_date(d.birthdate, 'long') if d.birthdate else '',
-            # --- ข้อมูลบุคคล: ทนายความ ---
-            '%(lawyer_address)s': self._format_address(l),
-            '%(lawyer_phone)s': l.phone or '',
-            '%(lawyer_email)s': l.email or '',
-            '%(lawyer_license_no)s': l.lawyer_license_no or '',
-            # --- ศาล / เลขคดี ---
-            '%(court)s': self.court_name or '',
-            '%(black_case)s': self.black_case_no or '',
-            '%(red_case)s': self.red_case_no or '',
-            '%(black_case_thai)s': to_thai_digits(self.black_case_no or ''),
-            '%(red_case_thai)s': to_thai_digits(self.red_case_no or ''),
-            # --- ข้อมูลคดี ---
-            '%(case_category)s': (case.case_category or '') if case else '',
-            '%(charge)s': (case.charge or '') if case else '',
-            '%(claim_amount)s': '{:,.2f}'.format(case.claim_amount) if case and case.claim_amount else '',
-            '%(claim_amount_text)s': num_to_thai_text(case.claim_amount) if case and case.claim_amount else '',
-            '%(judgment_date)s': to_thai_date(case.judgment_date, 'long') if case and case.judgment_date else '',
-            '%(judgment_read_date)s': to_thai_date(case.judgment_read_date, 'long') if case and case.judgment_read_date else '',
-            # --- ข้อมูลบุคคล: ทนาย (เพิ่มเติม) ---
-            '%(lawyer_id_no)s': l.vat or '',
-            '%(lawyer_fax)s': l.fax or '',
-            '%(lawyer_race)s': l.race or '',
-            '%(lawyer_nationality)s': l.nationality or '',
-            '%(lawyer_occupation)s': l.occupation or '',
-            '%(lawyer_age)s': self._compute_age(l.birthdate) if l.birthdate else '',
-            # --- ข้อมูลบุคคล: โจทก์/จำเลย (เพิ่มเติม) ---
-            '%(plaintiff_fax)s': p.fax or '',
-            '%(defendant_fax)s': d.fax or '',
-            # --- เลขบัตรประชาชน format X-XXXX-XXXXX-XX-X ---
-            '%(plaintiff_id_formatted)s': self._format_thai_id(p.vat),
-            '%(defendant_id_formatted)s': self._format_thai_id(d.vat),
-            '%(lawyer_id_formatted)s': self._format_thai_id(l.vat),
-            '%(agent_id_formatted)s': self._format_thai_id(self.agent_id.vat),
-            '%(guarantor_id_formatted)s': self._format_thai_id(self.guarantor_id.vat),
-            # --- ที่อยู่แยก field ---
-            '%(plaintiff_street)s': p.street or '',
-            '%(plaintiff_street2)s': p.street2 or '',
-            '%(plaintiff_city)s': p.city or '',
-            '%(plaintiff_state)s': p.state_id.name if p.state_id else '',
-            '%(plaintiff_zip)s': p.zip or '',
-            '%(defendant_street)s': d.street or '',
-            '%(defendant_street2)s': d.street2 or '',
-            '%(defendant_city)s': d.city or '',
-            '%(defendant_state)s': d.state_id.name if d.state_id else '',
-            '%(defendant_zip)s': d.zip or '',
-            '%(lawyer_street)s': l.street or '',
-            '%(lawyer_street2)s': l.street2 or '',
-            '%(lawyer_city)s': l.city or '',
-            '%(lawyer_state)s': l.state_id.name if l.state_id else '',
-            '%(lawyer_zip)s': l.zip or '',
-            # --- คู่ความหลายคน (join ชื่อด้วย ", ") ---
-            '%(plaintiffs)s': self._join_party_names(case.plaintiff_ids) if case else '',
-            '%(defendants)s': self._join_party_names(case.defendant_ids) if case else '',
-            '%(plaintiffs_full)s': self._join_party_details(case.plaintiff_ids) if case else '',
-            '%(defendants_full)s': self._join_party_details(case.defendant_ids) if case else '',
-            # --- ข้อมูลเฉพาะเอกสาร ---
-            '%(agent)s': self.agent_id.name or '',
-            '%(agent_address)s': self._format_address(self.agent_id),
-            '%(agent_phone)s': self.agent_id.phone or '',
-            '%(agent_id_no)s': self.agent_id.vat or '',
-            '%(agent_email)s': self.agent_id.email or '',
-            '%(agent_fax)s': self.agent_id.fax or '',
-            '%(agent_age)s': self._compute_age(self.agent_id.birthdate) if self.agent_id.birthdate else '',
-            '%(guarantor)s': self.guarantor_id.name or '',
-            '%(guarantor_address)s': self._format_address(self.guarantor_id),
-            '%(guarantor_id_no)s': self.guarantor_id.vat or '',
-            '%(bail_amount)s': '{:,.2f}'.format(self.bail_amount) if self.bail_amount else '',
-            '%(bail_amount_text)s': num_to_thai_text(self.bail_amount) if self.bail_amount else '',
-            '%(written_location)s': self.written_location or '',
-            # --- วันที่ (พุทธศักราช + ตัวเลขไทย) ---
-            '%(date_long)s': to_thai_date(doc_date, 'long'),
-            '%(date_short)s': to_thai_date(doc_date, 'short'),
-            '%(date_full)s': to_thai_date(doc_date, 'full'),
-            '%(thai_year)s': to_thai_year(doc_date),
-        }
+        replacements = self._build_replacements_dict()
         for key, value in replacements.items():
             html = html.replace(key, str(value))
         return html
+
+
 
     def _format_thai_id(self, id_no):
         """Format Thai national ID: 1234567890123 → 1-2345-67890-12-3"""
@@ -331,6 +231,148 @@ class FormDocument(models.Model):
     def _compute_annotation_count(self):
         for rec in self:
             rec.annotation_count = len(rec.annotation_ids)
+
+    def _compute_placeholder_preview(self):
+        """Show all placeholder values as a table for review."""
+        import re as _re
+        for rec in self:
+            if not rec.template_id or not rec.template_id.body_html:
+                rec.placeholder_preview = False
+                continue
+            # Find which placeholders this template uses
+            used = _re.findall(r'%\(([a-z_]+)\)s', rec.template_id.body_html)
+            if not used:
+                rec.placeholder_preview = '<p>ฟอร์มนี้ไม่มี placeholder</p>'
+                continue
+            # Build replacements dict (same as _apply_merge_fields)
+            replacements = rec._build_replacements_dict()
+            # Build HTML table — only show used placeholders
+            seen = set()
+            rows = []
+            for ph in used:
+                if ph in seen:
+                    continue
+                seen.add(ph)
+                key = f'%({ph})s'
+                value = str(replacements.get(key, ''))
+                status = '✓' if value else '—'
+                color = '#28a745' if value else '#dc3545'
+                esc_val = value.replace('&', '&amp;').replace('<', '&lt;')
+                empty_html = '<em style="color:#999">ว่าง</em>'
+                val_cell = esc_val if esc_val else empty_html
+                rows.append(
+                    '<tr>'
+                    f'<td style="padding:4px 8px;color:{color};font-weight:bold">{status}</td>'
+                    f'<td style="padding:4px 8px;font-family:monospace">%({ph})s</td>'
+                    f'<td style="padding:4px 8px">{val_cell}</td>'
+                    '</tr>'
+                )
+            filled = sum(1 for ph in seen if replacements.get(f'%({ph})s', ''))
+            summary = f'<p><strong>ข้อมูลครบ {filled}/{len(seen)} รายการ</strong></p>'
+            table = (
+                '<table style="width:100%;border-collapse:collapse;font-size:14px">'
+                '<thead><tr style="background:#f0f0f0">'
+                '<th style="padding:6px 8px;width:30px"></th>'
+                '<th style="padding:6px 8px;text-align:left">Placeholder</th>'
+                '<th style="padding:6px 8px;text-align:left">ค่าปัจจุบัน</th>'
+                '</tr></thead><tbody>'
+                + ''.join(rows)
+                + '</tbody></table>'
+            )
+            rec.placeholder_preview = summary + table
+
+    def _build_replacements_dict(self):
+        """Build the placeholder→value dict without applying to HTML."""
+        doc_date = self.document_date or date.today()
+        p = self.plaintiff_id
+        d = self.defendant_id
+        l = self.lawyer_id
+        case = self.case_id
+        return {
+            '%(plaintiff)s': p.name or '',
+            '%(defendant)s': d.name or '',
+            '%(lawyer)s': l.name or '',
+            '%(plaintiff_address)s': self._format_address(p),
+            '%(plaintiff_phone)s': p.phone or '',
+            '%(plaintiff_id_no)s': p.vat or '',
+            '%(plaintiff_email)s': p.email or '',
+            '%(plaintiff_race)s': p.race or '',
+            '%(plaintiff_nationality)s': p.nationality or '',
+            '%(plaintiff_occupation)s': p.occupation or '',
+            '%(plaintiff_age)s': self._compute_age(p.birthdate) if p.birthdate else '',
+            '%(plaintiff_birthdate)s': to_thai_date(p.birthdate, 'long') if p.birthdate else '',
+            '%(defendant_address)s': self._format_address(d),
+            '%(defendant_phone)s': d.phone or '',
+            '%(defendant_id_no)s': d.vat or '',
+            '%(defendant_email)s': d.email or '',
+            '%(defendant_race)s': d.race or '',
+            '%(defendant_nationality)s': d.nationality or '',
+            '%(defendant_occupation)s': d.occupation or '',
+            '%(defendant_age)s': self._compute_age(d.birthdate) if d.birthdate else '',
+            '%(defendant_birthdate)s': to_thai_date(d.birthdate, 'long') if d.birthdate else '',
+            '%(lawyer_address)s': self._format_address(l),
+            '%(lawyer_phone)s': l.phone or '',
+            '%(lawyer_email)s': l.email or '',
+            '%(lawyer_license_no)s': l.lawyer_license_no or '',
+            '%(lawyer_id_no)s': l.vat or '',
+            '%(lawyer_fax)s': l.fax or '',
+            '%(lawyer_race)s': l.race or '',
+            '%(lawyer_nationality)s': l.nationality or '',
+            '%(lawyer_occupation)s': l.occupation or '',
+            '%(lawyer_age)s': self._compute_age(l.birthdate) if l.birthdate else '',
+            '%(court)s': self.court_name or '',
+            '%(black_case)s': self.black_case_no or '',
+            '%(red_case)s': self.red_case_no or '',
+            '%(black_case_thai)s': to_thai_digits(self.black_case_no or ''),
+            '%(red_case_thai)s': to_thai_digits(self.red_case_no or ''),
+            '%(case_category)s': (case.case_category or '') if case else '',
+            '%(charge)s': (case.charge or '') if case else '',
+            '%(claim_amount)s': '{:,.2f}'.format(case.claim_amount) if case and case.claim_amount else '',
+            '%(claim_amount_text)s': num_to_thai_text(case.claim_amount) if case and case.claim_amount else '',
+            '%(judgment_date)s': to_thai_date(case.judgment_date, 'long') if case and case.judgment_date else '',
+            '%(judgment_read_date)s': to_thai_date(case.judgment_read_date, 'long') if case and case.judgment_read_date else '',
+            '%(plaintiff_fax)s': p.fax or '',
+            '%(defendant_fax)s': d.fax or '',
+            '%(plaintiff_id_formatted)s': self._format_thai_id(p.vat),
+            '%(defendant_id_formatted)s': self._format_thai_id(d.vat),
+            '%(lawyer_id_formatted)s': self._format_thai_id(l.vat),
+            '%(agent_id_formatted)s': self._format_thai_id(self.agent_id.vat),
+            '%(guarantor_id_formatted)s': self._format_thai_id(self.guarantor_id.vat),
+            '%(plaintiff_street)s': p.street or '',
+            '%(plaintiff_city)s': p.city or '',
+            '%(plaintiff_state)s': p.state_id.name if p.state_id else '',
+            '%(plaintiff_zip)s': p.zip or '',
+            '%(defendant_street)s': d.street or '',
+            '%(defendant_city)s': d.city or '',
+            '%(defendant_state)s': d.state_id.name if d.state_id else '',
+            '%(defendant_zip)s': d.zip or '',
+            '%(lawyer_street)s': l.street or '',
+            '%(lawyer_street2)s': l.street2 or '',
+            '%(lawyer_city)s': l.city or '',
+            '%(lawyer_state)s': l.state_id.name if l.state_id else '',
+            '%(lawyer_zip)s': l.zip or '',
+            '%(plaintiffs)s': self._join_party_names(case.plaintiff_ids) if case else '',
+            '%(defendants)s': self._join_party_names(case.defendant_ids) if case else '',
+            '%(plaintiffs_full)s': self._join_party_details(case.plaintiff_ids) if case else '',
+            '%(defendants_full)s': self._join_party_details(case.defendant_ids) if case else '',
+            '%(agent)s': self.agent_id.name or '',
+            '%(agent_address)s': self._format_address(self.agent_id),
+            '%(agent_phone)s': self.agent_id.phone or '',
+            '%(agent_id_no)s': self.agent_id.vat or '',
+            '%(agent_email)s': self.agent_id.email or '',
+            '%(agent_fax)s': self.agent_id.fax or '',
+            '%(agent_age)s': self._compute_age(self.agent_id.birthdate) if self.agent_id.birthdate else '',
+            '%(guarantor)s': self.guarantor_id.name or '',
+            '%(guarantor_address)s': self._format_address(self.guarantor_id),
+            '%(guarantor_id_no)s': self.guarantor_id.vat or '',
+            '%(bail_amount)s': '{:,.2f}'.format(self.bail_amount) if self.bail_amount else '',
+            '%(bail_amount_text)s': num_to_thai_text(self.bail_amount) if self.bail_amount else '',
+            '%(written_location)s': self.written_location or '',
+            '%(date_long)s': to_thai_date(doc_date, 'long'),
+            '%(date_short)s': to_thai_date(doc_date, 'short'),
+            '%(date_full)s': to_thai_date(doc_date, 'full'),
+            '%(thai_year)s': to_thai_year(doc_date),
+        }
 
     @api.depends('continuous_text_ids', 'continuous_text_ids.content',
                  'continuous_text_ids.section_label',
