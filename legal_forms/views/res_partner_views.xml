@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_legal" model="ir.ui.view">
+        <field name="name">res.partner.form.legal</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page string="ข้อมูลทางกฎหมาย" name="legal_info">
+                    <group>
+                        <group string="ข้อมูลส่วนบุคคล">
+                            <field name="race"/>
+                            <field name="nationality"/>
+                            <field name="occupation"/>
+                            <field name="birthdate"/>
+                        </group>
+                        <group string="ทนายความ">
+                            <field name="lawyer_license_no"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

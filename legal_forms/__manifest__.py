@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'data/form_category_data.xml',
         'data/form_template_data.xml',
+        'views/res_partner_views.xml',
         'views/legal_case_views.xml',
         'views/form_template_views.xml',
         'views/form_document_views.xml',

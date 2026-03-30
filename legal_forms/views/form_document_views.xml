@@ -42,6 +42,13 @@
                             <field name="defendant_id"/>
                             <field name="lawyer_id"/>
                         </group>
+                        <group string="ข้อมูลเพิ่มเติม">
+                            <field name="document_date"/>
+                            <field name="written_location"/>
+                            <field name="agent_id"/>
+                            <field name="guarantor_id"/>
+                            <field name="bail_amount"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="เนื้อหา">
