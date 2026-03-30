@@ -67,9 +67,8 @@
     <template id="report_form_document">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page"
-                         style="font-family: 'TH SarabunPSK', 'TH Sarabun New', 'Angsana New', sans-serif; font-size: 16pt;">
+                <div class="article"
+                     style="font-family: 'TH SarabunPSK', 'TH Sarabun New', 'Angsana New', sans-serif; font-size: 16pt;">
 
                         <!-- เนื้อหาฟอร์มหลัก -->
                         <div t-field="doc.body_html"/>
@@ -86,7 +85,7 @@
                                         <t t-esc="ct.section_label or 'ข้อ'"/>
                                         <t t-esc="ct.section_number or ''"/>
                                     </strong>
-                                    <t t-raw="ct.content"/>
+                                    <t t-out="ct.content"/>
                                 </div>
                             </t>
                         </t>
@@ -141,8 +140,7 @@
                             </t>
                         </t>
 
-                    </div>
-                </t>
+                </div>
             </t>
         </t>
     </template>
