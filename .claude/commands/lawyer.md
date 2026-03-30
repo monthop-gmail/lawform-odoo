@@ -186,21 +186,65 @@ odoo_create → legal.witness.item
   - document_id, sequence, witness_type (document/person/material), name, facts_to_prove
 ```
 
-**3.6 เติมข้อมูลลงฟอร์ม** (merge placeholders กับข้อมูลจริง)
+**3.6 ตรวจ placeholder ว่างแล้วเติมให้ครบ**
 
-หลังจากสร้างเอกสาร + ร่างเนื้อหาเสร็จ ต้องเรียก action นี้กับทุกเอกสาร:
+ก่อน merge ต้องเช็คว่า placeholder ครบหรือยัง:
+```
+# อ่าน placeholder_preview ของทุกเอกสาร
+odoo_search_read → legal.form.document
+  domain: [["id", "in", [doc_id_1, doc_id_2, ...]]]
+  fields: ["name", "placeholder_preview"]
+```
+
+ดูผลลัพธ์: ถ้ามี `—` (ว่าง) ต้องเติมข้อมูลให้ครบ
+
+**Placeholder ว่างมักเกิดจาก res.partner ไม่ครบ** — แก้โดย update partner:
+```
+# เช่น ทนายขาดเบอร์โทร/ที่อยู่/เลขบัตร
+odoo_write → res.partner [lawyer_id]
+  values:
+    phone: "02-xxx-xxxx"
+    street: "xxx ถ.xxx"
+    city: "เขตxxx"
+    zip: "10xxx"
+    vat: "1234567890123"
+    email: "xxx@xxx.com"
+    fax: "02-xxx-xxxx"
+
+# เช่น คดีขาดเลขคดีดำ
+odoo_write → legal.case [case_id]
+  values:
+    black_case_no: "xxxx/2569"
+```
+
+**ตาราง: placeholder ว่าง → แก้ที่ไหน**
+
+| placeholder ว่าง | แก้ที่ | field |
+|-----------------|-------|-------|
+| `%(plaintiff_phone)s` | res.partner (โจทก์) | phone |
+| `%(plaintiff_id_no)s` | res.partner (โจทก์) | vat |
+| `%(plaintiff_address)s` | res.partner (โจทก์) | street, city, zip |
+| `%(lawyer_phone)s` | res.partner (ทนาย) | phone |
+| `%(lawyer_address)s` | res.partner (ทนาย) | street, city, zip |
+| `%(lawyer_license_no)s` | res.partner (ทนาย) | lawyer_license_no |
+| `%(court)s` | legal.form.document | court_name |
+| `%(black_case_thai)s` | legal.form.document | black_case_no |
+| `%(agent)s` | legal.form.document | agent_id |
+| `%(guarantor)s` | legal.form.document | guarantor_id |
+| `%(bail_amount)s` | legal.form.document | bail_amount |
+
+**3.7 เติมข้อมูลลงฟอร์ม** (merge placeholders กับข้อมูลจริง)
+
+หลังเติมข้อมูลครบแล้ว เรียก action นี้กับทุกเอกสาร:
 ```
 odoo_execute → legal.form.document
   method: "action_apply_merge_fields"
   args: [[doc_id_1, doc_id_2, doc_id_3, ...]]
 ```
 
-ขั้นตอนนี้จะ:
-- อ่าน template ต้นฉบับใหม่
-- แทน %(placeholder)s ด้วยข้อมูลจริงจาก fields
-- เขียนกลับเข้า body_html
+**3.8 ตรวจ placeholder อีกครั้ง** — อ่าน placeholder_preview ซ้ำ ต้องได้ "ข้อมูลครบ X/X รายการ"
 
-**สำคัญ**: กดซ้ำได้ — ถ้ามนุษย์แก้ข้อมูลใน Odoo UI แล้วกด "เติมข้อมูลลงฟอร์ม" อีกครั้ง จะ re-render ใหม่
+ถ้ายังไม่ครบ → กลับไป 3.6 เติมเพิ่ม → merge ซ้ำ (กดซ้ำได้ไม่จำกัด)
 
 ### 4. แสดงผลลัพธ์
 
