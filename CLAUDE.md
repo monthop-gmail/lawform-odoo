@@ -45,14 +45,13 @@ legal_forms/
     19.0.1.2.0/          — reset noupdate for template updates
     19.0.1.3.0/          — reset noupdate for 90/92 placeholders
   views/  reports/  security/
-.claude/commands/
-  lawyer.md              — /lawyer skill (AI ทนายความ)
-.mcp.json                — MCP server config (odoo-mcp-claude)
-agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นตอน, ฟอร์ม, กฎหมาย)
 ```
 
-> **หมายเหตุ**: ไฟล์ AI agent (agent-LAWYER.md, agent-REVIEW.md, .claude/commands/, .mcp.json)
-> ถูก package แยกไว้ที่ `/opt/docker-test/lawform-ai-plugin/` เพื่อรองรับหลาย AI tools
+> **AI Plugin**: ไฟล์ AI agent ทั้งหมดแยกออกไปอยู่ที่ **`lawform-ai-plugin`** แล้ว
+> - Repo: https://github.com/monthop-gmail/lawform-ai-plugin
+> - Local: `/opt/docker-test/lawform-ai-plugin/`
+> - รองรับ: Claude Code, OpenCode, ChatGPT Codex, Gemini CLI, Antigravity, OpenClaw
+> - ติดตั้ง: `./install.sh . claude-code`
 
 ## Merge Field System (Placeholder)
 
@@ -129,23 +128,18 @@ agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นต
 ## MCP Server (AI access to Odoo)
 
 MCP server at `http://localhost:8000/mcp/` connects AI agents to Odoo via XML-RPC.
-Config: `.mcp.json` | Server: `/opt/docker-test/odoo-mcp-claude/`
+Server: `/opt/docker-test/odoo-mcp-claude/`
 
 Available tools: `odoo_create`, `odoo_search_read`, `odoo_write`, `odoo_delete`, `odoo_execute`, `odoo_fields_get`, `odoo_version`
 
-## AI Lawyer (`/lawyer` skill)
+## AI Plugin
 
-- Skill file: `.claude/commands/lawyer.md`
-- Reference: `agent-LAWYER.md`
-- Creates cases + documents + drafts content via MCP tools
-- Tested: civil, criminal, bail, appeal cases
+ไฟล์ AI agent ทั้งหมด (lawyer, review skills, agent docs, MCP config) อยู่ใน repo แยก:
 
-## AI Review (`/review` skill)
-
-- Skill file: `.claude/commands/review.md`
-- Reference: `agent-REVIEW.md`
-- Checks 6 areas: document set, placeholders, content, witnesses, party data, Thai digits
-- Reports findings with fix instructions
+- **Repo**: https://github.com/monthop-gmail/lawform-ai-plugin
+- **Local**: `/opt/docker-test/lawform-ai-plugin/`
+- **ติดตั้ง**: `./install.sh /path/to/project claude-code`
+- **รองรับ**: Claude Code, OpenCode, ChatGPT Codex, Gemini CLI, Antigravity, OpenClaw
 
 ## Testing
 
