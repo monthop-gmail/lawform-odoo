@@ -51,6 +51,9 @@ legal_forms/
 agent-LAWYER.md          — คู่มือ AI ทนาย (ขั้นตอน, ฟอร์ม, กฎหมาย)
 ```
 
+> **หมายเหตุ**: ไฟล์ AI agent (agent-LAWYER.md, agent-REVIEW.md, .claude/commands/, .mcp.json)
+> ถูก package แยกไว้ที่ `/opt/docker-test/lawform-ai-plugin/` เพื่อรองรับหลาย AI tools
+
 ## Merge Field System (Placeholder)
 
 - **Syntax**: `%(field_name)s` in template HTML
