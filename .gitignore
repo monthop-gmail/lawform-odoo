@@ -28,6 +28,7 @@ Thumbs.db
 
 # Original form templates (Word docs, not source-controlled)
 forms/
+court-forms/
 
 # Legacy Windows software
 software/
